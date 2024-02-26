@@ -6,10 +6,10 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <header class="navbar" id="Des">
-        <a href="#"><img src="../assets/images/Logo.png" alt=""></a>
+        <RouterLink to="/"><img src="../assets/images/Logo.png" alt=""></RouterLink>
         <span class="menu-icon" @click="toggleMenuUtils">&#9776;</span>
         <ul class="nav-list">
-            <li class="nav-item link"><a href="#">CONTACTO</a></li>
+            <li class="nav-item link"><RouterLink to="/contact">CONTACTO</RouterLink></li>
             <li class="nav-item">
                 <a>OBRAS <span @click="toggleDropdownUtils" class="material-symbols-outlined">expand_more</span></a>
                 <ul class="nav-item dropdown">
@@ -18,7 +18,7 @@ import { RouterLink, RouterView } from "vue-router";
                     <li class="nav-item link"><a href="#">TRAGEDIA</a></li>
                 </ul>
             </li>
-            <li class="nav-item link"><a href="#">ALQUILER</a></li>
+            <li class="nav-item link"><RouterLink to="/rent">ALQUILER</RouterLink></li>
             <li class="nav-item" id="login"><a href="#">LOGIN</a></li>
             <li class="nav-item" id="carrito"><a href="#">CARRITO</a></li>
         </ul>
@@ -31,7 +31,7 @@ import { RouterLink, RouterView } from "vue-router";
                 <a href="#">ROMANTICA</a>
                 <a href="#">COMEDIA</a>
                 <a href="#">TRAGEDIA</a>
-                <a href="#">ALQUILER</a>
+                <RouterLink to="/rent">ALQUILER</RouterLink>
             </div>
             <div id="Der">
                 <a href="#">LOGIN</a>

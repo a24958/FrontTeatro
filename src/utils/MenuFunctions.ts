@@ -5,17 +5,17 @@ export function toggleMenu(): void {
     const location = window.location.href;
 
     const slider = document.querySelector('.slider-section') as HTMLElement;
-    // const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
-    // const contacto = document.querySelector('.contacto-section') as HTMLElement;
+    const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
+    //const contacto = document.querySelector('.contacto-section') as HTMLElement;
     // const obras = document.querySelector('.obras-section') as HTMLElement;
     // const login = document.querySelector('.login-section') as HTMLElement;
     // const asientos = document.querySelector('.asientos-section') as HTMLElement;
     // const carrito = document.querySelector('.carrito-h1') as HTMLElement;
 
     if (navList.classList.contains('show')) {
-        if (location.includes('/alquiler')) {
-            slider.style.marginTop = '220px';
-        } /*else if (location.includes('/contacto')) {
+        if (location.includes('/rent')) {
+            alquiler.style.marginTop = '220px';
+        } /*else if (location.includes('/contact')) {
             contacto.style.marginTop = '220px';
         } else if (location.includes('-')) {
             asientos.style.marginTop = '220px';
@@ -29,9 +29,9 @@ export function toggleMenu(): void {
             slider.style.marginTop = '220px';
         }
     } else {
-        if (location.includes('/alquiler')) {
-            slider.style.marginTop = '0px';
-        } /*else if (location.includes('/contacto')) {
+        if (location.includes('/rent')) {
+            alquiler.style.marginTop = '0px';
+        } /*else if (location.includes('/contact')) {
             contacto.style.marginTop = '0px';
         } else if (location.includes('-')) {
             asientos.style.marginTop = '0px';
@@ -59,15 +59,15 @@ export function toggleDropdown(): void {
     const location = window.location.href;
 
     const slider = document.querySelector('.slider-section') as HTMLElement;
-    // const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
-    // const contacto = document.querySelector('.contacto-section') as HTMLElement;
+    const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
+    //const contacto = document.querySelector('.contacto-section') as HTMLElement;
     // const obras = document.querySelector('.obras-section') as HTMLElement;
     // const login = document.querySelector('.login-section') as HTMLElement;
     // const asientos = document.querySelector('.asientos-section') as HTMLElement;
     // const carrito = document.querySelector('.carrito-h1') as HTMLElement;
 
     if (dropdown.style.display === 'block') {
-        if (location.includes('/alquiler')) {
+        if (location.includes('/rent')) {
             slider.style.marginTop = '350px';
         } /*else if (location.includes('/contacto')) {
             contacto.style.marginTop = '350px';
@@ -83,7 +83,7 @@ export function toggleDropdown(): void {
             slider.style.marginTop = '350px';
         }
     } else {
-        if (location.includes('/alquiler')) {
+        if (location.includes('/rent')) {
             slider.style.marginTop = '220px';
         } /*else if (location.includes('/contacto')) {
             contacto.style.marginTop = '220px';
