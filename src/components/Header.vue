@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { toggleDropdownUtils, toggleMenuUtils } from "../utils/utils";
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
@@ -25,8 +26,8 @@ import { toggleDropdownUtils, toggleMenuUtils } from "../utils/utils";
     <header class="header-desktop">
         <nav>
             <div id="Izq">
-                <a href="#"><img src="../assets/images/Logo.png" alt=""></a>
-                <a href="#">CONTACTO</a>
+                <RouterLink to="/"><img src="../assets/images/Logo.png" alt=""></RouterLink>
+                <RouterLink to="/contact">CONTACTO</RouterLink>
                 <a href="#">ROMANTICA</a>
                 <a href="#">COMEDIA</a>
                 <a href="#">TRAGEDIA</a>
