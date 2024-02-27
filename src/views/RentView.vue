@@ -10,6 +10,6 @@ import RentContainer from '../components/rentViewComponents/RentContainer.vue'
     <Footer></Footer>
 </template>
 
-<script scoped>
+<style scoped>
 
-</script>
+</style>

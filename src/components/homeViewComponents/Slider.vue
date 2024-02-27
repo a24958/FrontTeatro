@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { plusSlidesUtils } from "../../utils/utils";
 import { sliderFunctionsStore } from "../../stores/storeSliderFunctions";
 
 const sliderFunctions = sliderFunctionsStore();
