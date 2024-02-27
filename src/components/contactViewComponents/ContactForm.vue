@@ -51,6 +51,7 @@
     border-color: #EBEBEB;
     border-style: solid;
     border-radius: 12px;
+    margin-bottom: 40px;
 }
 
 .contacto-formulario input,
