@@ -15,7 +15,7 @@ const menuFunctions = menuFunctionsStore();
             <li class="nav-item">
                 <a>OBRAS <span @click="menuFunctions.toggleDropdown" class="material-symbols-outlined">expand_more</span></a>
                 <ul class="nav-item dropdown">
-                    <li class="nav-item link"><a href="#">ROMANTICA</a></li>
+                    <li class="nav-item link"><RouterLink to="/intranet">ROMANTICA</RouterLink></li>
                     <li class="nav-item link"><a href="#">COMEDIA</a></li>
                     <li class="nav-item link"><a href="#">TRAGEDIA</a></li>
                 </ul>
@@ -30,7 +30,7 @@ const menuFunctions = menuFunctionsStore();
             <div id="Izq">
                 <RouterLink to="/"><img src="../assets/images/Logo.png" alt=""></RouterLink>
                 <RouterLink to="/contact">CONTACTO</RouterLink>
-                <a href="#">ROMANTICA</a>
+                <RouterLink to="/intranet">ROMANTICA</RouterLink>
                 <a href="#">COMEDIA</a>
                 <a href="#">TRAGEDIA</a>
                 <RouterLink to="/rent">ALQUILER</RouterLink>
@@ -41,7 +41,6 @@ const menuFunctions = menuFunctionsStore();
             </div>
         </nav>
     </header>
-    <RouterView></RouterView>
 </template>
 
 <style scoped>
