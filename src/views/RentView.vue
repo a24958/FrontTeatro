@@ -5,9 +5,7 @@ import RentContainer from '../components/rentViewComponents/RentContainer.vue'
 </script>
 
 <template>
-    <Header></Header>
     <RentContainer></RentContainer>
-    <Footer></Footer>
 </template>
 
 <style scoped>

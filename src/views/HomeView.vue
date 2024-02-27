@@ -7,11 +7,9 @@
 </script>
 
 <template>
-    <Header></Header>
     <Slider></Slider>
     <SoonSection></SoonSection>
     <RentSection></RentSection>
-    <Footer></Footer>
 </template>
 
 <style scoped>

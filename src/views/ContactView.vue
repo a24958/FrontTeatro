@@ -5,9 +5,7 @@ import ContactSection from "../components/contactViewComponents/ContactSection.v
 </script>
 
 <template>
-    <Header></Header>
     <ContactSection></ContactSection>
-    <Footer></Footer>
 </template>
 
 <style scoped>

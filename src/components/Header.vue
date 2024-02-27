@@ -41,6 +41,7 @@ const menuFunctions = menuFunctionsStore();
             </div>
         </nav>
     </header>
+    <RouterView></RouterView>
 </template>
 
 <style scoped>
