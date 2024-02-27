@@ -1,12 +1,15 @@
 import { defineStore } from "pinia";
+import { useRoute } from 'vue-router';
+import { ref, watch } from 'vue';
+
 
 export const menuFunctionsStore = defineStore('menuFunctions', () => {
     function toggleMenu(): void {
         const navList = document.querySelector('.nav-list') as HTMLElement;
         navList.classList.toggle('show');
-    
+
         const location = window.location.href;
-    
+
         const slider = document.querySelector('.slider-section') as HTMLElement;
         const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
         const contacto = document.querySelector('.contacto-section') as HTMLElement;
@@ -14,7 +17,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
         // const login = document.querySelector('.login-section') as HTMLElement;
         // const asientos = document.querySelector('.asientos-section') as HTMLElement;
         // const carrito = document.querySelector('.carrito-h1') as HTMLElement;
-    
+
         if (navList.classList.contains('show')) {
             if (location.includes('/rent')) {
                 alquiler.style.marginTop = '220px';
@@ -54,13 +57,13 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
         const dropdown = document.querySelector('.dropdown') as HTMLElement;
         const icon = document.querySelector('.material-symbols-outlined') as HTMLElement;
         const iconText = icon.innerText || icon.textContent as String;
-    
+
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         const nuevoIcon = iconText.trim() === 'expand_more' ? 'expand_less' : 'expand_more';
         icon.innerHTML = nuevoIcon;
-    
+
         const location = window.location.href;
-    
+
         const slider = document.querySelector('.slider-section') as HTMLElement;
         const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
         const contacto = document.querySelector('.contacto-section') as HTMLElement;
@@ -68,7 +71,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
         // const login = document.querySelector('.login-section') as HTMLElement;
         // const asientos = document.querySelector('.asientos-section') as HTMLElement;
         // const carrito = document.querySelector('.carrito-h1') as HTMLElement;
-    
+
         if (dropdown.style.display === 'block') {
             if (location.includes('/rent')) {
                 alquiler.style.marginTop = '350px';
@@ -104,5 +107,23 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
         }
     };
 
-    return { toggleMenu, toggleDropdown }
+    function showHideNavBar() {
+        var route = useRoute();
+        const showHeader = ref(route.meta.showHeader !== false);
+        console.log(showHeader.value);
+
+
+        watch(
+            () => route.meta.showHeader,
+            (newVal) => {
+                showHeader.value = newVal !== false;
+            }
+        );
+
+        return {
+            showHeader,
+        };
+    }
+
+    return { toggleMenu, toggleDropdown, showHideNavBar }
 })
