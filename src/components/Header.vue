@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import { menuFunctionsStore } from "../stores/storeMenuFunctions.ts";
+import { menuFunctionsStore } from "../stores/storeMenuFunctions";
 
 const menuFunctions = menuFunctionsStore();
 </script>
