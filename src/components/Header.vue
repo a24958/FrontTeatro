@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { toggleDropdownUtils, toggleMenuUtils } from "../utils/utils";
 import { RouterLink, RouterView } from "vue-router";
+import { menuFunctionsStore } from "../stores/storeMenuFunctions.ts";
+
+const menuFunctions = menuFunctionsStore();
 </script>
 
 <template>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <header class="navbar" id="Des">
         <RouterLink to="/"><img src="../assets/images/Logo.png" alt=""></RouterLink>
-        <span class="menu-icon" @click="toggleMenuUtils">&#9776;</span>
+        <span class="menu-icon" @click="menuFunctions.toggleMenu">&#9776;</span>
         <ul class="nav-list">
             <li class="nav-item link"><RouterLink to="/contact">CONTACTO</RouterLink></li>
             <li class="nav-item">
-                <a>OBRAS <span @click="toggleDropdownUtils" class="material-symbols-outlined">expand_more</span></a>
+                <a>OBRAS <span @click="menuFunctions.toggleDropdown" class="material-symbols-outlined">expand_more</span></a>
                 <ul class="nav-item dropdown">
                     <li class="nav-item link"><a href="#">ROMANTICA</a></li>
                     <li class="nav-item link"><a href="#">COMEDIA</a></li>

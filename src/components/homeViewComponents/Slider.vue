@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { plusSlidesUtils } from "../../utils/utils";
+import { sliderFunctionsStore } from "../../stores/storeSliderFunctions.ts";
+
+const sliderFunctions = sliderFunctionsStore();
 </script>
 
 <template>
@@ -11,8 +14,8 @@ import { plusSlidesUtils } from "../../utils/utils";
                 <div class="slide"><img src="../../assets/images/slider_3.jpg" alt="Imagen 3"></div>
             </div>
     
-            <div class="prev" @click="plusSlidesUtils(-1)">&#10094;</div>
-            <div class="next" @click="plusSlidesUtils(1)">&#10095;</div>
+            <div class="prev" @click="sliderFunctions.plusSlides(-1)">&#10094;</div>
+            <div class="next" @click="sliderFunctions.plusSlides(1)">&#10095;</div>
         </div>
     </section>
 </template>
