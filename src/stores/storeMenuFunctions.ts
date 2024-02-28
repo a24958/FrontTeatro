@@ -14,7 +14,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
         const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
         const contacto = document.querySelector('.contacto-section') as HTMLElement;
         // const obras = document.querySelector('.obras-section') as HTMLElement;
-        // const login = document.querySelector('.login-section') as HTMLElement;
+        const login = document.querySelector('.login-section') as HTMLElement;
         // const asientos = document.querySelector('.asientos-section') as HTMLElement;
         // const carrito = document.querySelector('.carrito-h1') as HTMLElement;
 
@@ -23,13 +23,13 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 alquiler.style.marginTop = '220px';
             } else if (location.includes('/contact')) {
                 contacto.style.marginTop = '220px';
-            } /*else if (location.includes('-')) {
+            /*} else if (location.includes('-')) {
                 asientos.style.marginTop = '220px';
             } else if (location.includes('/obras')) {
-                obras.style.marginTop = '220px';
+                obras.style.marginTop = '220px';*/
             } else if (location.includes('/login')) {
                 login.style.marginTop = '220px';
-            } else if (location.includes('/carrito')) {
+            } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '220px';
             } */else {
                 slider.style.marginTop = '220px';
@@ -39,13 +39,13 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 alquiler.style.marginTop = '0px';
             } else if (location.includes('/contact')) {
                 contacto.style.marginTop = '0px';
-            } /*else if (location.includes('-')) {
+            /*} else if (location.includes('-')) {
                 asientos.style.marginTop = '0px';
             } else if (location.includes('/obras')) {
-                obras.style.marginTop = '0px';
+                obras.style.marginTop = '0px';*/
             } else if (location.includes('/login')) {
                 login.style.marginTop = '0px';
-            } else if (location.includes('/carrito')) {
+            } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '0px';
             } */else {
                 slider.style.marginTop = '0px';
@@ -68,7 +68,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
         const alquiler = document.querySelector('.alquilar-section') as HTMLElement;
         const contacto = document.querySelector('.contacto-section') as HTMLElement;
         // const obras = document.querySelector('.obras-section') as HTMLElement;
-        // const login = document.querySelector('.login-section') as HTMLElement;
+        const login = document.querySelector('.login-section') as HTMLElement;
         // const asientos = document.querySelector('.asientos-section') as HTMLElement;
         // const carrito = document.querySelector('.carrito-h1') as HTMLElement;
 
@@ -77,13 +77,13 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 alquiler.style.marginTop = '350px';
             } else if (location.includes('/contact')) {
                 contacto.style.marginTop = '350px';
-            } /*else if (location.includes('-')) {
+            /*} else if (location.includes('-')) {
                 asientos.style.marginTop = '350px';
             } else if (location.includes('/obras')) {
-                obras.style.marginTop = '350px';
+                obras.style.marginTop = '350px';*/
             } else if (location.includes('/login')) {
                 login.style.marginTop = '350px';
-            } else if (location.includes('/carrito')) {
+            } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '350px';
             }*/ else {
                 slider.style.marginTop = '350px';
@@ -93,13 +93,13 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 alquiler.style.marginTop = '220px';
             } else if (location.includes('/contact')) {
                 contacto.style.marginTop = '220px';
-            } /*else if (location.includes('-')) {
+            /*} else if (location.includes('-')) {
                 asientos.style.marginTop = '220px';
             } else if (location.includes('/obras')) {
-                obras.style.marginTop = '220px';
+                obras.style.marginTop = '220px';*/
             } else if (location.includes('/login')) {
                 login.style.marginTop = '220px';
-            } else if (location.includes('/carrito')) {
+            } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '220px';
             } */else {
                 slider.style.marginTop = '220px';

@@ -21,7 +21,7 @@ const menuFunctions = menuFunctionsStore();
                 </ul>
             </li>
             <li class="nav-item link"><RouterLink to="/rent">ALQUILER</RouterLink></li>
-            <li class="nav-item" id="login"><a href="#">LOGIN</a></li>
+            <li class="nav-item" id="login"><RouterLink to="/login">LOGIN</RouterLink></li>
             <li class="nav-item" id="carrito"><a href="#">CARRITO</a></li>
         </ul>
     </header>
@@ -36,7 +36,7 @@ const menuFunctions = menuFunctionsStore();
                 <RouterLink to="/rent">ALQUILER</RouterLink>
             </div>
             <div id="Der">
-                <a href="#">LOGIN</a>
+                <RouterLink to="/login">LOGIN</RouterLink>
                 <a href="#">🛒</a>
             </div>
         </nav>
