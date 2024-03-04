@@ -4,6 +4,7 @@ import ContactView from '../views/ContactView.vue'
 import RentView from '../views/RentView.vue'
 import IntranteView from '../views/IntranetView.vue'
 import LoginView from '../views/LoginView.vue'
+import RegisterView from '../views/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,14 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+      meta:{
+        showHeader: true,
+      }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView,
       meta:{
         showHeader: true,
       }
