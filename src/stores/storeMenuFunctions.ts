@@ -110,7 +110,6 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
     function showHideNavBar() {
         var route = useRoute();
         const showHeader = ref(route.meta.showHeader !== false);
-        console.log(showHeader.value);
 
 
         watch(
