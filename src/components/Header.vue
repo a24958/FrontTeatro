@@ -8,10 +8,10 @@ const menuFunctions = menuFunctionsStore();
 <template>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <header class="navbar" id="Des">
-        <RouterLink to="/"><img src="../assets/images/Logo.png" alt=""></RouterLink>
+        <RouterLink to="/"><img src="../assets/images/Logo.png" alt="" @click="menuFunctions.closeMenu"></RouterLink>
         <span class="menu-icon" @click="menuFunctions.toggleMenu">&#9776;</span>
         <ul class="nav-list">
-            <li class="nav-item link"><RouterLink to="/contact">CONTACTO</RouterLink></li>
+            <li class="nav-item link" @click="menuFunctions.closeMenu"><RouterLink to="/contact">CONTACTO</RouterLink></li>
             <li class="nav-item">
                 <a>OBRAS <span @click="menuFunctions.toggleDropdown" class="material-symbols-outlined">expand_more</span></a>
                 <ul class="nav-item dropdown">
@@ -20,9 +20,9 @@ const menuFunctions = menuFunctionsStore();
                     <li class="nav-item link"><a href="#">TRAGEDIA</a></li>
                 </ul>
             </li>
-            <li class="nav-item link"><RouterLink to="/rent">ALQUILER</RouterLink></li>
-            <li class="nav-item" id="login"><RouterLink to="/login">LOGIN</RouterLink></li>
-            <li class="nav-item" id="carrito"><a href="#">CARRITO</a></li>
+            <li class="nav-item link" @click="menuFunctions.closeMenu"><RouterLink to="/rent">ALQUILER</RouterLink></li>
+            <li class="nav-item" id="login" @click="menuFunctions.closeMenu"><RouterLink to="/login">LOGIN</RouterLink></li>
+            <li class="nav-item" id="carrito" @click="menuFunctions.closeMenu"><a href="#">CARRITO</a></li>
         </ul>
     </header>
     <header class="header-desktop">
