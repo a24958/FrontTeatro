@@ -15,7 +15,9 @@ import { RouterLink } from 'vue-router'
             <button id="primary">
               <RouterLink to="/">Login</RouterLink>
             </button>
-            <button id="secondary"><a href="/register">Register</a></button>
+            <button id="secondary">
+              <RouterLink to="/register">Register</RouterLink>
+            </button>
         </form>
     </section>
 </template>

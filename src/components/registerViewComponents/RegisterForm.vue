@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -15,7 +15,9 @@
             <label for="contraseña">Contraseña</label>
             <input type="text" id="contraseña" name="contraseña">
 
-            <button id="primary"><a href="/">Register</a></button>
+            <button id="primary">
+              <RouterLink to="/">Register</RouterLink>
+            </button>
         </form>
     </section>
 </template>

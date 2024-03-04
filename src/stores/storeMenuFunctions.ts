@@ -27,7 +27,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 asientos.style.marginTop = '220px';
             } else if (location.includes('/obras')) {
                 obras.style.marginTop = '220px';*/
-            } else if (location.includes('/login')) {
+            } else if (location.includes('/login') || location.includes('/register')) {
                 login.style.marginTop = '220px';
             } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '220px';
@@ -43,7 +43,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 asientos.style.marginTop = '0px';
             } else if (location.includes('/obras')) {
                 obras.style.marginTop = '0px';*/
-            } else if (location.includes('/login')) {
+            } else if (location.includes('/login') || location.includes('/register')) {
                 login.style.marginTop = '0px';
             } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '0px';
@@ -81,7 +81,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 asientos.style.marginTop = '350px';
             } else if (location.includes('/obras')) {
                 obras.style.marginTop = '350px';*/
-            } else if (location.includes('/login')) {
+            } else if (location.includes('/login') || location.includes('/register')) {
                 login.style.marginTop = '350px';
             } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '350px';
@@ -97,7 +97,7 @@ export const menuFunctionsStore = defineStore('menuFunctions', () => {
                 asientos.style.marginTop = '220px';
             } else if (location.includes('/obras')) {
                 obras.style.marginTop = '220px';*/
-            } else if (location.includes('/login')) {
+            } else if (location.includes('/login') || location.includes('/register')) {
                 login.style.marginTop = '220px';
             } /*else if (location.includes('/carrito')) {
                 carrito.style.marginTop = '220px';
