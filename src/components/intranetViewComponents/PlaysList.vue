@@ -1,57 +1,36 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive } from "vue";
+import { intranetFunctionsStore } from "../../stores/storeIntranetFunctions";
+import PlayLine from "./PlayLine.vue";
 
-interface Play {
-  name: string;
-  description: string;
-  price: number;
-}
+const intranetFunctions = intranetFunctionsStore();
 
-const plays: Play[] = [
-    { name: "El Rey León", description: "Cuenta la historia de dos jóvenes que, a pesar de la oposición de sus familiares, rivales entre sí, deciden casarse de forma ilegal y vivir juntos.", price: 12.50 },
-    { name: "Cuento de Navidad", description: "Cuenta la historia de dos jóvenes que, a pesar de la oposición de sus familiares, rivales entre sí, deciden casarse de forma ilegal y vivir juntos.", price: 2.00 },
-    { name: "Hamlet", description: "Cuenta la historia de dos jóvenes que, a pesar de la oposición de sus familiares, rivales entre sí, deciden casarse de forma ilegal y vivir juntos.", price: 50 }
-];
+const plays = intranetFunctions.theaterPlays;
+
 </script>
 
 <template>
-    <div>
-        <table>
-            <tbody>
-                <tr v-for="(play, index) in plays" :key="index" :class="{ 'fila-par': index % 2 === 0, 'fila-impar': index % 2 !== 0 }">
-                    <td>{{ play.name }}</td>
-                    <td>{{ play.description }}</td>
-                    <td>{{ play.price }}</td>
-                    <td><button>Modificar</button></td>
-                    <td><button>Eliminar</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <main>
+    <PlayLine v-for="(play, index) in plays" :key="index" :id="play.id" :name="play.name" :description="play.description"
+      :price="play.price" :class="{ par: index % 2 === 0, impar: index % 2 != 0 }">
+    </PlayLine>
+  </main>
 </template>
 
 <style scoped>
-div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-table {
-  width: 80%;
-  border-collapse: collapse;
+.par {
+  background-color: whitesmoke;
 }
 
-th, td {
-  padding: 8px;
-  text-align: left;
-}
-
-.fila-par {
-  background-color: #f0f0f0; 
-}
-
-.fila-impar {
-  background-color: #ffffff;
+.impar {
+  background-color: grey;
+  color: white;
 }
 </style>
