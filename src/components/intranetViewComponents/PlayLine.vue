@@ -18,8 +18,10 @@ const editPlay = intranetFunctions.editPlay;
         <p class="playLine-name"> {{ name }}</p>
         <p class="playLine-description"> {{ description }}</p>
         <p class="playLine-price"> {{ price }}€</p>
-        <button id="edit" @click="editPlay(id)">+</button>
-        <button id="delete" @click="deletePlay(id)">-</button>
+        <div class="playLine-buttonsSection">
+            <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button>
+            <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
+        </div>
     </div>
 </template>
 
@@ -61,14 +63,30 @@ div button{
     border-radius: 7px;
 }
 
+.playLine-buttonsSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+}
+
+.playLine-buttonsSection button img{
+    width: 20px;
+    height: 20px;
+}
+
 #edit{
     margin-right: 8px;
     background-color: orange;
-    color: white;
 }
 
 #delete{
     background-color: red;
-    color: white;
 }
+
+#delete img{
+    margin-left: -1px;
+}
+
 </style>
