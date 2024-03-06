@@ -7,12 +7,16 @@ const intranetFunctions = intranetFunctionsStore();
 
 const plays = intranetFunctions.theaterPlays;
 
+const apiCallGet = intranetFunctions.apiCallGet;
+
+apiCallGet();
+
 </script>
 
 <template>
   <main>
-    <PlayLine v-for="(play, index) in plays" :key="index" :id="play.id" :name="play.name" :description="play.description"
-      :price="play.price" :class="{ par: index % 2 === 0, impar: index % 2 != 0 }">
+    <PlayLine v-for="(play, index) in plays" :key="index" :id="play.id" :nombre="play.nombre" :descripcion="play.descripcion" :rutaFoto="play.rutaFoto"
+      :class="{ par: index % 2 === 0, impar: index % 2 != 0 }">
     </PlayLine>
   </main>
 </template>

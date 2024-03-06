@@ -3,9 +3,9 @@ import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
 
 const props = defineProps<{
     id: number,
-    name: string,
-    description: string,
-    price: number,
+    nombre: string,
+    descripcion: string,
+    rutaFoto: string,
 }>()
 
 const intranetFunctions = intranetFunctionsStore();
@@ -15,9 +15,8 @@ const editPlay = intranetFunctions.editPlay;
 
 <template>
     <div>
-        <p class="playLine-name"> {{ name }}</p>
-        <p class="playLine-description"> {{ description }}</p>
-        <p class="playLine-price"> {{ price }}€</p>
+        <p class="playLine-name"> {{ nombre }}</p>
+        <p class="playLine-description"> {{ descripcion }}</p>
         <div class="playLine-buttonsSection">
             <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button>
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
@@ -31,7 +30,7 @@ div {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 60%;
+    width: 80%;
     padding: 16px;
 }
 
@@ -39,7 +38,7 @@ div {
     display: block;
     align-items: center;
     justify-content: center;
-    width: 75px;
+    width: 125px;
     margin-right: 25px;
 }
 
@@ -89,4 +88,9 @@ div button{
     margin-left: -1px;
 }
 
+@media screen and (min-width: 800px){
+    div{
+        width: 50%;
+    }
+}
 </style>

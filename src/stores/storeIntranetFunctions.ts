@@ -6,40 +6,74 @@ function ExceptionNotFound(id: number): void{
 }
 
 interface Play {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
+    id: number,
+    nombre: string,
+    descripcion: string,
+    rutaFoto: string,
 }
 
 export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
-    const plays:Play[] = [
-        { id: 0, name: "El Rey León", description: "Cuenta la historia de dos jóvenes que, a pesar de la oposición de sus familiares, rivales entre sí, deciden casarse de forma ilegal y vivir juntos.", price: 12.50 },
-        { id: 1, name: "Cuento de Navidad", description: "Cuenta la historia de dos jóvenes que, a pesar de la oposición de sus familiares, rivales entre sí, deciden casarse de forma ilegal y vivir juntos.", price: 2.00 },
-        { id: 2, name: "Hamlet", description: "Cuenta la historia de dos jóvenes que, a pesar de la oposición de sus familiares, rivales entre sí, deciden casarse de forma ilegal y vivir juntos.", price: 50 }
-    ];
+    async function apiCallGet() {
+        const requestOptions: RequestInit = {
+            method: 'GET', 
+            mode: 'cors', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+    
+        try {
+            const response = await fetch('http://localhost:5169/Obra', requestOptions);
+            
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            
+            const json = await response.json();  
+            theaterPlays.push(...json);
+            
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+        }
+    }
 
-    const nuevaInfo: Play = { id: 0, name: "Prueba Titulo", description: "Prueba description", price: 10};
+    const theaterPlays = reactive(Array<Play>()); 
 
-    const theaterPlays = reactive(Array<Play>());
-    theaterPlays.push(...plays);    
-
-    function deletePlay(id: number) {
-        var index = theaterPlays.findIndex(play => play.id === id);
-        theaterPlays.splice(index, 1)
+    async function deletePlay(id: number) {
+        const requestOptions: RequestInit = {
+            method: 'DELETE', 
+            mode: 'cors', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+    
+        try {
+            const response = await fetch(`http://localhost:5169/Obra/${id}`, requestOptions);
+            
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            
+            var index = theaterPlays.findIndex(play => play.id === id);
+            theaterPlays.splice(index, 1)
+            
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+        }
     }
 
     function editPlay(id: number) {
         var play = theaterPlays.find(play => play.id === id);
 
-        if (play !== undefined || play !== null) {
-            play!.name = nuevaInfo.name;
-            play!.description = nuevaInfo.description;
-            play!.price = nuevaInfo.price;
-        } else {
-            ExceptionNotFound(id);
-        }
+        // if (play !== undefined || play !== null) {
+        //     play!.name = nuevaInfo.name;
+        //     play!.description = nuevaInfo.description;
+        //     play!.price = nuevaInfo.price;
+        // } else {
+        //     ExceptionNotFound(id);
+        // }
     }
 
-    return { theaterPlays, deletePlay, editPlay }
+    return { theaterPlays, deletePlay, editPlay, apiCallGet }
 });
