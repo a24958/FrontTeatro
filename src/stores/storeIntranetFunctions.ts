@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
+import { apiCallsFunctionsStore } from "./stroreApiCalls";
 
 function ExceptionNotFound(id: number): void{
     throw `Play with id ${id} not found`
@@ -13,7 +14,19 @@ interface Play {
 }
 
 export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
+    const apiCallsFunctions = apiCallsFunctionsStore();
+
+    const theaterPlays = reactive(Array<Play>());
+
     async function apiCallGet() {
+        apiCallsFunctions.apiCall('GET', 'Obra', null, theaterPlays,)  
+    } 
+    
+    async function apiCallDelete(id:number) {
+        apiCallsFunctions.apiCall('DELETE', `Obra/${id}`, null, theaterPlays, id)
+    } 
+
+    /*async function apiCallGet() {
         const requestOptions: RequestInit = {
             method: 'GET', 
             mode: 'cors', 
@@ -35,11 +48,9 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
-    }
+    }*/ 
 
-    const theaterPlays = reactive(Array<Play>()); 
-
-    async function deletePlay(id: number) {
+    /*async function deletePlay(id: number) {
         const requestOptions: RequestInit = {
             method: 'DELETE', 
             mode: 'cors', 
@@ -61,7 +72,7 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
-    }
+    }*/
 
     function editPlay(id: number) {
         var play = theaterPlays.find(play => play.id === id);
@@ -75,5 +86,5 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
         // }
     }
 
-    return { theaterPlays, deletePlay, editPlay, apiCallGet }
+    return { theaterPlays, apiCallDelete, editPlay, apiCallGet }
 });

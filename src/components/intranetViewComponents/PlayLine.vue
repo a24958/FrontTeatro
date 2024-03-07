@@ -9,7 +9,7 @@ const props = defineProps<{
 }>()
 
 const intranetFunctions = intranetFunctionsStore();
-const deletePlay = intranetFunctions.deletePlay;
+const deletePlay = intranetFunctions.apiCallDelete;
 const editPlay = intranetFunctions.editPlay;
 </script>
 
