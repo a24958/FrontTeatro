@@ -1,11 +1,12 @@
 <script setup lang="ts">
-    
+    import WelcomeTitle from '../components/intranetViewComponents/WelcomeTitle.vue'
+    import PlaysList from '../components/intranetViewComponents/PlaysList.vue'
 </script>
 
 <template>
-    <div>ESTO SERA LA PRUEBA DE LA INTRANET</div>
+    <WelcomeTitle></WelcomeTitle>
+    <PlaysList></PlaysList>
 </template>
 
 <style scoped>
-
 </style>
