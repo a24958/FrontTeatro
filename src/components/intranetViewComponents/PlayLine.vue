@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
+import OpenPopUpButton from './OpenPopUpButton.vue';
 
 const props = defineProps<{
     id: number,
@@ -18,7 +19,8 @@ const editPlay = intranetFunctions.editPlay;
         <p class="playLine-name"> {{ nombre }}</p>
         <p class="playLine-description"> {{ descripcion }}</p>
         <div class="playLine-buttonsSection">
-            <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button>
+            <!-- <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
+            <OpenPopUpButton></OpenPopUpButton>
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
         </div>
     </div>
