@@ -11,7 +11,7 @@ const input2 = ref('');
 const input3 = ref('');
 
 const openPopup = () => {
-  showPopup.value = true; // Actualiza el valor de showPopup a true para mostrar el popup
+  showPopup.value = true; 
 };
 
 const closePopup = () => {
