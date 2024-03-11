@@ -5,6 +5,10 @@ import { intranetFunctionsStore } from "../../stores/storeIntranetFunctions";
 const intranetFunctions = intranetFunctionsStore();
 const editPlay = intranetFunctions.apiCallEdit;
 
+const props = defineProps<{
+  id: number,
+}>()
+
 const showPopup = ref(false);
 const input1 = ref('');
 const input2 = ref('');
@@ -18,7 +22,7 @@ const closePopup = () => {
   showPopup.value = false;
 };
 
-const saveData = () => {
+const saveData = (id: number) => {
   console.log('Titulo:', input1.value);
   console.log('Descripción:', input2.value);
   console.log('Ruta Foto', input3.value);
@@ -30,7 +34,7 @@ const saveData = () => {
     "auditoriaUsuario": "Admin"
   }
 
-  editPlay(data);
+  editPlay(data, id);
 
   closePopup();
 };
@@ -54,7 +58,7 @@ const hidePlaceholder = (inputName: string) => {
       <input type="text" v-model="input3" placeholder="Ruta Foto" name="input3" @focus="hidePlaceholder('input3')">
       <div>
         <button @click="closePopup">Cancel</button>
-        <button @click="saveData">Save</button>
+        <button @click="saveData(id)">Save</button>
       </div>
     </div>
   </div>

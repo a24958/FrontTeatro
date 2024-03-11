@@ -26,8 +26,8 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
         apiCallsFunctions.apiCall('DELETE', `Obra/${id}`, null, theaterPlays, id)
     } 
 
-    async function apiCallEdit(data:any) {
-        apiCallsFunctions.apiCall('PUT', 'Obra/1', data, theaterPlays, 1)
+    async function apiCallEdit(data:any, id:number) {
+        apiCallsFunctions.apiCall('PUT', `Obra/${id}`, data, theaterPlays, id)
     }
 
     /*async function apiCallGet() {

@@ -20,7 +20,7 @@ const deletePlay = intranetFunctions.apiCallDelete;
         <p class="playLine-description"> {{ descripcion }}</p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
-            <OpenPopUpButton></OpenPopUpButton>
+            <OpenPopUpButton :id="id"></OpenPopUpButton>
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
         </div>
     </div>
