@@ -23,6 +23,17 @@ export const apiCallsFunctionsStore = defineStore('apiCallsFunctions', () => {
         array.splice(index, 1)
     }
 
+    function putCalls(array:Array<Play>, id: number, data: any) {
+        var index = array.findIndex(item => item.id === id);
+        var editPlay = {
+            id: id,
+            nombre: data["nombre"],
+            descripcion: data["descripcion"],
+            rutaFoto: data["rutaFoto"],
+        }
+        array.splice(index, 1, editPlay)
+    }
+
     async function apiCall(method:string, endpoint:string, data?:any, array?:Array<Play>, id?:number) {
         const requestOptions: RequestInit = {
             method: method, 
@@ -51,6 +62,8 @@ export const apiCallsFunctionsStore = defineStore('apiCallsFunctions', () => {
                 case DELETE_METHOD:
                     deleteCalls(array!, id!)
                     break
+                case PUT_METHOD: 
+                    putCalls(array!, id!, data)
             }  
             
         } catch (error) {

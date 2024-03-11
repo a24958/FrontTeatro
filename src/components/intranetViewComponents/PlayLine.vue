@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const intranetFunctions = intranetFunctionsStore();
 const deletePlay = intranetFunctions.apiCallDelete;
-const editPlay = intranetFunctions.editPlay;
+
 </script>
 
 <template>
