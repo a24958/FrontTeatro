@@ -1,5 +1,37 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import { loginFunctionsStore } from '../../stores/storeLoginFunctions';
 import { RouterLink } from 'vue-router'
+import router from '../../router/index';
+
+const loginStore = loginFunctionsStore();
+
+const user = ref('');
+const password = ref('');
+const errorMessage = ref('');
+
+async function login() {
+  const userLogin = user.value
+  const passwordLogin = password.value
+
+  try {
+    const userReturned = await loginStore.getUser(userLogin, passwordLogin);
+    if(userReturned.email === userLogin && userReturned.password == passwordLogin){
+      if(userReturned.rol === "Admin"){
+        await router.push('/intranet')
+      } else {
+        await router.push('/');
+      } 
+    } else {
+      errorMessage.value = 'Usuario o contraseña incorrectos';
+      return;
+    }
+  
+  } catch (error) {
+    errorMessage.value = 'Usuario o contraseña incorrectos';
+  }
+};
+
 </script>
 
 <template>
@@ -7,18 +39,17 @@ import { RouterLink } from 'vue-router'
         <h1>Login</h1>
         <form class="login-formulario">
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" required>
+            <input v-model="user" type="text" id="email" name="email" required>
 
             <label for="contraseña">Contraseña</label>
-            <input type="text" id="contraseña" name="contraseña" required>
+            <input v-model="password" type="text" id="contraseña" name="contraseña" required>
 
-            <button id="primary">
-              <RouterLink to="/">Login</RouterLink>
-            </button>
+            <button id="primary" @click.prevent="login()">Login</button>
             <button id="secondary">
               <RouterLink to="/register">Register</RouterLink>
             </button>
         </form>
+        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     </section>
 </template>
 
