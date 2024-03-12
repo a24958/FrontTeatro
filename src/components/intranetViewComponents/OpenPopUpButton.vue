@@ -10,11 +10,14 @@ const props = defineProps<{
 }>()
 
 const showPopup = ref(false);
-const input1 = ref('');
-const input2 = ref('');
-const input3 = ref('');
+const Titulo = ref('');
+const Descripcion = ref('');
+const RutaFoto = ref('');
+const Duracion = ref(0);
+const errorMessage = ref('');
 
 const openPopup = () => {
+  errorMessage.value = ''
   showPopup.value = true; 
 };
 
@@ -23,15 +26,23 @@ const closePopup = () => {
 };
 
 const saveData = (id: number) => {
-  console.log('Titulo:', input1.value);
-  console.log('Descripción:', input2.value);
-  console.log('Ruta Foto', input3.value);
+
+  if (!Titulo.value || !Descripcion.value || !RutaFoto.value || !Duracion.value) {
+    if(Duracion.value === 0){
+      errorMessage.value = "La duración de una obra no puede ser 0";
+      return;
+    }
+
+    errorMessage.value = "Todos los campos son obligatorios";
+    return;
+  }
 
   const data = {
-    "nombre": input1.value,
-    "descripcion": input2.value,
-    "rutaFoto": input3.value,
-    "auditoriaUsuario": "Admin"
+    "nombre": Titulo.value,
+    "descripcion": Descripcion.value,
+    "rutaFoto": RutaFoto.value,
+    "auditoriaUsuario": "Admin",
+    "duracion": Duracion.value,
   }
 
   editPlay(data, id);
@@ -53,9 +64,11 @@ const hidePlaceholder = (inputName: string) => {
         <h2>Popup Title</h2>
         <span class="close" @click="closePopup">&times;</span>
       </div>
-      <input type="text" v-model="input1" placeholder="Titulo" name="input1" @focus="hidePlaceholder('input1')">
-      <input type="text" v-model="input2" placeholder="Descripción" name="input2" @focus="hidePlaceholder('input2')">
-      <input type="text" v-model="input3" placeholder="Ruta Foto" name="input3" @focus="hidePlaceholder('input3')">
+      <input type="text" v-model="Titulo" placeholder="Titulo" name="Titulo" :class="{ error: errorMessage && !Titulo }" @focus="hidePlaceholder('Titulo')">
+      <input type="text" v-model="Descripcion" placeholder="Descripción" :class="{ error: errorMessage && !Descripcion }" name="Descripción" @focus="hidePlaceholder('Descripción')">
+      <input type="text" v-model="RutaFoto" placeholder="Ruta Foto" :class="{ error: errorMessage && !RutaFoto }" name="RutaFoto" @focus="hidePlaceholder('RutaFoto')">
+      <input type="text" v-model="Duracion" placeholder="Duración" :class="{ error: errorMessage && !Duracion }" name="Duración" @focus="hidePlaceholder('Duración')">
+      <div class="error" v-if="errorMessage">{{ errorMessage }}</div>
       <div>
         <button @click="closePopup">Cancel</button>
         <button @click="saveData(id)">Save</button>
@@ -115,10 +128,6 @@ input {
     border: 1px solid black;
 }
 
-input:focus {
-  border: 1px solid #3385D9;
-}
-
 button {
     cursor: pointer;
     background-color: #3385D9;
@@ -144,5 +153,15 @@ button img{
   width: 120px;
   color: white;
   background-color: #3385D9;
+}
+
+.error{
+  color: red;
+  font-weight: bold;
+  font-size: large;
+}
+
+input.error{
+  border: 1px solid red;
 }
 </style>
