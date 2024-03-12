@@ -11,6 +11,7 @@ interface Play {
     nombre: string,
     descripcion: string,
     rutaFoto: string,
+    duracion: number
 }
 
 export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
