@@ -36,5 +36,38 @@ export const loginFunctionsStore = defineStore('loginFunctions', () => {
         }
     }
 
-    return { getUser }
+    async function postUser(user:string, email:string, password:string) {
+        const requestOptions: RequestInit = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const data = {
+            "email": email,
+            "user": user,
+            "password": password,
+        }
+
+        requestOptions.body = JSON.stringify(data);
+
+        try {
+            const response = await fetch(`http://localhost:5169/Usuario`, requestOptions);
+
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            
+            return true;
+            
+
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+            return false;
+        }
+    }
+
+    return { getUser, postUser }
 })

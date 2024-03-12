@@ -1,5 +1,35 @@
 <script setup lang="ts">
+import { loginFunctionsStore } from '../../stores/storeLoginFunctions';
+import router from '../../router/index';
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
+
+const loginStore = loginFunctionsStore();
+
+const user = ref('');
+const email = ref('')
+const password = ref('');
+const errorMessage = ref('');
+
+async function register() {
+  const userRegister = user.value
+  const emailRegister = email.value
+  const passwordRegister = password.value
+
+  try {
+    const userReturned = await loginStore.postUser(userRegister, emailRegister, passwordRegister);
+    if(userReturned == true){
+      await router.push('/');
+    } else {
+      errorMessage.value = 'Error a la hora de registrar usuario';
+      return;
+    }
+  
+  } catch (error) {
+    errorMessage.value = 'Error a la hora de registrar usuario';
+  }
+};
+
 </script>
 
 <template>
@@ -7,17 +37,15 @@ import { RouterLink } from 'vue-router'
         <h1>Register</h1>
         <form class="login-formulario">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre">
+            <input v-model="user" type="text" id="nombre" name="nombre">
 
             <label for="email">Email</label>
-            <input type="text" id="email" name="email">
+            <input v-model="email" type="text" id="email" name="email">
 
             <label for="contraseña">Contraseña</label>
-            <input type="text" id="contraseña" name="contraseña">
+            <input v-model="password" type="password" id="contraseña" name="contraseña">
 
-            <button id="primary">
-              <RouterLink to="/">Register</RouterLink>
-            </button>
+            <button id="primary" @click.prevent="register">Register</button>
         </form>
     </section>
 </template>
