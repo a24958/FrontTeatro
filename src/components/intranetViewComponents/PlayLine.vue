@@ -26,7 +26,7 @@ const deletePlay = intranetFunctions.apiCallDelete;
         <p class="playLine-duration"> {{ duracion }} Minutos</p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
-            <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion"></OpenPopUpButton>
+            <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="true"></OpenPopUpButton>
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
         </div>
     </div>
