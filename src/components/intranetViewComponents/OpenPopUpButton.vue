@@ -7,13 +7,17 @@ const editPlay = intranetFunctions.apiCallEdit;
 
 const props = defineProps<{
   id: number,
+  titulo: string,
+  descripcion: string,
+  rutaFoto: string,
+  duracion: number,
 }>()
 
 const showPopup = ref(false);
-const Titulo = ref('');
-const Descripcion = ref('');
-const RutaFoto = ref('');
-const Duracion = ref(0);
+const Titulo = ref(props.titulo);
+const Descripcion = ref(props.descripcion);
+const RutaFoto = ref(props.rutaFoto);
+const Duracion = ref(props.duracion);
 const errorMessage = ref('');
 
 const openPopup = () => {
@@ -64,7 +68,7 @@ const hidePlaceholder = (inputName: string) => {
         <h2>Popup Title</h2>
         <span class="close" @click="closePopup">&times;</span>
       </div>
-      <input type="text" v-model="Titulo" placeholder="Titulo" name="Titulo" :class="{ error: errorMessage && !Titulo }" @focus="hidePlaceholder('Titulo')">
+      <input type="text" v-model="Titulo" placeholder="Titulo" :class="{ error: errorMessage && !Titulo }" name="Titulo" @focus="hidePlaceholder('Titulo')">
       <input type="text" v-model="Descripcion" placeholder="Descripción" :class="{ error: errorMessage && !Descripcion }" name="Descripción" @focus="hidePlaceholder('Descripción')">
       <input type="text" v-model="RutaFoto" placeholder="Ruta Foto" :class="{ error: errorMessage && !RutaFoto }" name="RutaFoto" @focus="hidePlaceholder('RutaFoto')">
       <input type="text" v-model="Duracion" placeholder="Duración" :class="{ error: errorMessage && !Duracion }" name="Duración" @focus="hidePlaceholder('Duración')">

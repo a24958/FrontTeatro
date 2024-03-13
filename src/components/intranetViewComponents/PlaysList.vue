@@ -15,7 +15,7 @@ apiCallGet();
 
 <template>
   <main>
-    <PlayLine v-for="(play, index) in plays" :key="index" :id="play.id" :nombre="play.nombre" :descripcion="play.descripcion" :rutaFoto="play.rutaFoto"
+    <PlayLine v-for="(play, index) in plays" :key="index" :id="play.id" :nombre="play.nombre" :descripcion="play.descripcion" :rutaFoto="play.rutaFoto" :duracion="play.duracion"
       :class="{ par: index % 2 === 0, impar: index % 2 != 0 }">
     </PlayLine>
   </main>

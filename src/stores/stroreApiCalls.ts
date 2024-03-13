@@ -11,6 +11,7 @@ interface Play {
     nombre: string,
     descripcion: string,
     rutaFoto: string,
+    duracion: number,
 }
 
 export const apiCallsFunctionsStore = defineStore('apiCallsFunctions', () => { 
@@ -30,6 +31,7 @@ export const apiCallsFunctionsStore = defineStore('apiCallsFunctions', () => {
             nombre: data["nombre"],
             descripcion: data["descripcion"],
             rutaFoto: data["rutaFoto"],
+            duracion: data["duracion"],
         }
         array.splice(index, 1, editPlay)
     }
