@@ -47,8 +47,8 @@ export const loginFunctionsStore = defineStore('loginFunctions', () => {
 
         const data = {
             "email": email,
-            "user": user,
             "password": password,
+            "nombre": user,
         }
 
         requestOptions.body = JSON.stringify(data);
