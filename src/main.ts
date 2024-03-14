@@ -10,7 +10,8 @@ const app = createApp(App)
 const pinia = createPinia()
 
 const i18n = createI18n({
-    locale: 'en',
+    locale: 'es',
+    legacy: true,
     messages: {
       es: {
         hello: "Hola"
