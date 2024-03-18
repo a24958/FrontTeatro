@@ -31,6 +31,32 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
         apiCallsFunctions.apiCall('PUT', `Obra/${id}`, data, theaterPlays, id)
     }
 
+    async function apiCallCreate(data:any) {
+        const requestOptions: RequestInit = {
+            method: 'POST', 
+            mode: 'cors', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        requestOptions.body = JSON.stringify(data);
+    
+        try {
+            const response = await fetch('http://localhost:5169/Obra', requestOptions);
+            
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            
+            const json = await response.json();  
+            console.log(json);
+            
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+        }
+    }
+
     /*async function apiCallGet() {
         const requestOptions: RequestInit = {
             method: 'GET', 
@@ -91,5 +117,5 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
         // }
     }
 
-    return { theaterPlays, apiCallDelete, editPlay, apiCallGet, apiCallEdit }
+    return { theaterPlays, apiCallDelete, editPlay, apiCallGet, apiCallEdit, apiCallCreate }
 });
