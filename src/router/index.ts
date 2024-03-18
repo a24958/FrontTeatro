@@ -5,6 +5,7 @@ import RentView from '../views/RentView.vue'
 import IntranteView from '../views/IntranetView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
+import ObrasView from '../views/ObrasView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,7 @@ const router = createRouter({
       name: 'intranet',
       component: IntranteView,
       meta:{
+        requiresAuth: true,
         showHeader: false,
       }
     },
@@ -53,6 +55,14 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView,
+      meta:{
+        showHeader: true,
+      }
+    },
+    {
+      path: '/obras',
+      name: 'obras',
+      component: ObrasView,
       meta:{
         showHeader: true,
       }

@@ -13,12 +13,7 @@ const menuFunctions = menuFunctionsStore();
         <ul class="nav-list">
             <li class="nav-item link" @click="menuFunctions.closeMenu"><RouterLink to="/contact">CONTACTO</RouterLink></li>
             <li class="nav-item">
-                <a>OBRAS <span @click="menuFunctions.toggleDropdown" class="material-symbols-outlined">expand_more</span></a>
-                <ul class="nav-item dropdown">
-                    <li class="nav-item link"><RouterLink to="/intranet">ROMANTICA</RouterLink></li>
-                    <li class="nav-item link"><a href="#">COMEDIA</a></li>
-                    <li class="nav-item link"><a href="#">TRAGEDIA</a></li>
-                </ul>
+                <a>OBRAS</a>
             </li>
             <li class="nav-item link" @click="menuFunctions.closeMenu"><RouterLink to="/rent">ALQUILER</RouterLink></li>
             <li class="nav-item" id="login" @click="menuFunctions.closeMenu"><RouterLink to="/login">LOGIN</RouterLink></li>
@@ -30,9 +25,7 @@ const menuFunctions = menuFunctionsStore();
             <div id="Izq">
                 <RouterLink to="/"><img src="../assets/images/Logo.png" alt=""></RouterLink>
                 <RouterLink to="/contact">CONTACTO</RouterLink>
-                <RouterLink to="/intranet">ROMANTICA</RouterLink>
-                <a href="#">COMEDIA</a>
-                <a href="#">TRAGEDIA</a>
+                <RouterLink to="/obras">OBRAS</RouterLink>
                 <RouterLink to="/rent">ALQUILER</RouterLink>
             </div>
             <div id="Der">
@@ -182,7 +175,7 @@ ul {
     width: 100%;
   }
   .header-desktop nav #Izq {
-    width: 600px;
+    width: 400px;
   }
   .header-desktop nav #Der {
     width: 100px;
