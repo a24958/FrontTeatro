@@ -6,7 +6,7 @@ import IntranteView from '../views/IntranetView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import PlaysView from '../views/PlaysView.vue'
-import SessionsView from '../views/PlaysView.vue'
+import SessionsView from '../views/SessionView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

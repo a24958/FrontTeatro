@@ -16,7 +16,7 @@ const props = defineProps<{
       <h2>{{ nombre }}</h2>
       <p>{{ descripcion }}</p>
       <p>{{ duracion }} Minutos</p>
-      <RouterLink to="/session"><button>COMPRAR</button></RouterLink>
+      <RouterLink to="/sessions"><button>COMPRAR</button></RouterLink>
     </div>
   </article>
 </template>
