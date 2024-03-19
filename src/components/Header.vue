@@ -25,7 +25,7 @@ const menuFunctions = menuFunctionsStore();
             <div id="Izq">
                 <RouterLink to="/"><img src="../assets/images/Logo.png" alt=""></RouterLink>
                 <RouterLink to="/contact">CONTACTO</RouterLink>
-                <RouterLink to="/obras">OBRAS</RouterLink>
+                <RouterLink to="/plays">OBRAS</RouterLink>
                 <RouterLink to="/rent">ALQUILER</RouterLink>
             </div>
             <div id="Der">

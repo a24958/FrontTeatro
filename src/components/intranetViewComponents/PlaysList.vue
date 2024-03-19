@@ -5,20 +5,17 @@ import PlayLine from "./PlayLine.vue";
 import OpenPopUpButton from "./OpenPopUpButton.vue";
 
 const props = defineProps<{
-    id: number,
-    nombre: string,
-    descripcion: string,
-    rutaFoto: string,
-    duracion: number,
+  id: number,
+  nombre: string,
+  descripcion: string,
+  rutaFoto: string,
+  duracion: number,
 }>()
 
 const intranetFunctions = intranetFunctionsStore();
 
 const plays = intranetFunctions.theaterPlays;
 
-const apiCallGet = intranetFunctions.apiCallGet;
-
-apiCallGet();
 
 </script>
 

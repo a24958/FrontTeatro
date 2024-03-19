@@ -15,6 +15,8 @@ export const obrasFucntionsStore = defineStore('obrasFunctions', () => {
 
     const theaterPlays = reactive(Array<Play>());
 
+    apiCallGet();
+
     async function apiCallGet() {
         apiCallsFunctions.apiCall('GET', 'Obra', null, theaterPlays,)  
     } 

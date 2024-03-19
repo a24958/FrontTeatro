@@ -16,7 +16,7 @@ interface Play {
 
 export const apiCallsFunctionsStore = defineStore('apiCallsFunctions', () => { 
     function getCalls(json:any, array:Array<Play>) {
-        array.push(...json)
+        array.push(...json);
     }
 
     function deleteCalls(array:Array<Play>, id: number) {

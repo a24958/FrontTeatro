@@ -17,7 +17,9 @@ interface Play {
 export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
     const apiCallsFunctions = apiCallsFunctionsStore();
 
-    const theaterPlays = reactive(Array<Play>());
+    var theaterPlays = reactive(Array<Play>());
+
+    apiCallGet();
 
     async function apiCallGet() {
         apiCallsFunctions.apiCall('GET', 'Obra', null, theaterPlays,)  
@@ -49,8 +51,8 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
             
-            const json = await response.json();  
-            console.log(json);
+            // const json = await response.json();  
+            // theaterPlays.push(json)
             
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
