@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ContactView from '../views/ContactView.vue'
 import RentView from '../views/RentView.vue'
-import IntranteView from '../views/IntranetView.vue'
+import IntranetView from '../views/IntranetView.vue'
+import IPlaysView from '../views/IPlaysView.vue'
+import ISesionsView from '../views/ISesionsView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import PlaysView from '../views/PlaysView.vue'
@@ -38,7 +40,25 @@ const router = createRouter({
     {
       path: '/intranet',
       name: 'intranet',
-      component: IntranteView,
+      component: IntranetView,
+      meta:{
+        requiresAuth: true,
+        showHeader: false,
+      }
+    },
+    {
+      path: '/intranet/sesions',
+      name: 'i-sesions',
+      component: ISesionsView,
+      meta:{
+        requiresAuth: true,
+        showHeader: false,
+      }
+    },
+    {
+      path: '/intranet/plays',
+      name: 'i-plays',
+      component: IPlaysView,
       meta:{
         requiresAuth: true,
         showHeader: false,

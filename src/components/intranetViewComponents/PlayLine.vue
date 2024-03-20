@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
-import OpenPopUpButton from './OpenPopUpButton.vue';
+import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
 
 const props = defineProps<{
     id: number,

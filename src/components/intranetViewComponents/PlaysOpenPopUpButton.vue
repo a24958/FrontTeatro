@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import PopUp from './PopUp.vue';
+import PopUp from './PlaysPopUp.vue';
 
 const props = defineProps<{
   id: number,

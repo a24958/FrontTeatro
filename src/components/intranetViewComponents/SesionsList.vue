@@ -4,7 +4,11 @@ import { intranetFunctionsStore } from "../../stores/storeIntranetFunctions";
 import { intranetSesionFunctionsStore } from "../../stores/storeIntranetFunctions";
 
 import SesionLine from "./SesionLine.vue";
-import OpenPopUpButton from "./OpenPopUpButton.vue";
+import SesionLineTitle from './SesionLineTitle.vue'
+
+import OpenPopUpButton from "./PlaysOpenPopUpButton.vue";
+import PlaysOpenPopUpButton from "./PlaysOpenPopUpButton.vue";
+import SesionsOpenPopUpButton from "./SesionsOpenPopUpButton.vue";
 
 const props = defineProps<{
     id: number,
@@ -24,7 +28,8 @@ const sesions = intranetSesionFunctions.theaterSesions;
 
 <template>
   <main>
-    <!-- <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="false"></OpenPopUpButton> -->
+    <SesionsOpenPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :is-editing="false"></SesionsOpenPopUpButton>
+    <SesionLineTitle></SesionLineTitle>
     <SesionLine v-for="(sesion, index) in sesions" :key="index" :id="sesion.id" :salaId="sesion.salaId" :obraId="sesion.obraId" :nombre="sesion.nombre" :date="sesion.date"
       :class="{ par: index % 2 === 0, impar: index % 2 != 0 }">
     </SesionLine>

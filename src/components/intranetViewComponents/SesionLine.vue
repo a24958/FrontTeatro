@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
-import OpenPopUpButton from './OpenPopUpButton.vue';
+import { intranetSesionFunctionsStore } from '../../stores/storeIntranetFunctions';
+import SesionsPopUpButton from './SesionsOpenPopUpButton.vue';
 
 const props = defineProps<{
     id: number,
@@ -13,18 +13,18 @@ const props = defineProps<{
 
 
 
-const intranetFunctions = intranetFunctionsStore();
+const intranetFunctions = intranetSesionFunctionsStore();
 const deletePlay = intranetFunctions.apiCallDelete;
 
 </script>
 
 <template>
     <div>
-        <p class="playLine-description"> {{ salaId }}</p>
+        <p class="playLine-name"> {{ salaId }}</p>
         <p class="playLine-duration"> {{ date }} </p>
         <div class="playLine-buttonsSection">
-            <!-- <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
-            <!-- <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="true"></OpenPopUpButton> -->
+            <!-- <button id="edit" @click="editSesion(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
+            <SesionsPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="true"></SesionsPopUpButton>
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
         </div>
     </div>
@@ -35,7 +35,7 @@ div {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 80%;
     padding: 16px;
 }
