@@ -16,7 +16,7 @@ const props = defineProps<{
       <h2>{{ nombre }}</h2>
       <p>{{ descripcion }}</p>
       <p>{{ duracion }} Minutos</p>
-      <RouterLink to="/sessions"><button>COMPRAR</button></RouterLink>
+      <RouterLink :to="'/play/'+ id"><button>COMPRAR</button></RouterLink>
     </div>
   </article>
 </template>
@@ -57,7 +57,7 @@ const props = defineProps<{
   border-color: #EBEBEB;
   border-style: solid;
   width: 350px;
-  height: 700px;
+  height: 850px;
   margin-bottom: 64px;
 }
 
@@ -72,6 +72,7 @@ const props = defineProps<{
   width: 250px;
   margin-top: 0;
   margin-bottom: 0;
+  text-align: start;
 }
 
 .obras-container div button {

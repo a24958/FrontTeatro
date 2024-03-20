@@ -64,14 +64,16 @@ const router = createRouter({
       path: '/plays',
       name: 'plays',
       component: PlaysView,
+      props: true,
       meta:{
         showHeader: true,
       }
     },
     {
-      path: '/sessions',
-      name: 'sessions',
+      path: '/play/:obraId',
+      name: 'play',
       component: SessionsView,
+      props: true,
       meta:{
         showHeader: true,
       }

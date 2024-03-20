@@ -1,6 +1,8 @@
+import router from "@/router";
 import { defineStore } from "pinia";
+import { ref } from "vue";
 
-interface Session{
+interface Session {
     sesionId: number,
     date: Date,
     salaId: number,
@@ -17,44 +19,49 @@ interface Play {
     sesiones: Array<Session>
 }
 
-var play: Play;
 export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
 
-    getPlayById(1);
+    var play = ref({
+        id: 0,
+        nombre: '',
+        descripcion: '',
+        rutaFoto: '',
+        duracion: 0,
+        sesiones: Array<Session>()
+    });
 
-    async function getPlayById(id:number) {
+    const obraId = router.currentRoute.value.params.obraId[0];
+
+    async function getPlayById() {
         const requestOptions: RequestInit = {
-            method: 'GET', 
-            mode: 'cors', 
+            method: 'GET',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             }
         };
 
-    
         try {
-            const response = await fetch(`http://localhost:5169/Obra/1`, requestOptions);
-            
+            const response = await fetch(`http://localhost:5169/Obra/${parseInt(obraId)}`, requestOptions);
+
             if (!response.ok) {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
-            
+
             const json = await response.json();
-            play = {
-                id: json["id"],
-                nombre: json["nombre"],
-                descripcion: json["descripcion"],
-                rutaFoto: json["rutaFoto"],
-                duracion: json["duracion"],
-                sesiones: json["sesiones"],
-            };
-            
-            
-            
+            play.value.id = json["id"];
+            play.value.nombre = json["nombre"];
+            play.value.descripcion = json["descripcion"];
+            play.value.rutaFoto = json["rutaFoto"];
+            play.value.duracion = json["duracion"];
+            play.value.sesiones = json["sesiones"] || [];
+
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
     }
 
-    return { play }
+
+
+    return { getPlayById, play }
 })

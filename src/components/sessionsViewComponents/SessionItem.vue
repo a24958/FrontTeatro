@@ -12,7 +12,7 @@ const props = defineProps<{
     <div>
         <p>{{ date }}</p>
         <p>Sala: {{ salaId }}</p>
-        <p>{{ precio }}€</p>
+        <p>Precio: {{ precio }}€</p>
         <p>Asientos Disponibles{{ asientosDisponibles }}</p>
     </div>
 </template>
