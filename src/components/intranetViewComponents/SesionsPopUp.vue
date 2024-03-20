@@ -70,12 +70,24 @@ const hidePlaceholder = (inputName: string) => {
             <h2>Editar Obra</h2>
             <span class="close" @click="emit('closePopup')">&times;</span>
         </div>
+        <div class="popup-content-label">
+            Id Sala:
+        </div>
         <input type="text" v-model="SalaId" placeholder="SalaId" :class="{ error: errorMessage && !SalaId }" name="SalaId"
             @focus="hidePlaceholder('SalaId')">
+        <div class="popup-content-label">
+            Precio:
+        </div>
         <input type="text" v-model="Precio" placeholder="Precio" :class="{ error: errorMessage && !Precio }" name="Precio"
             @focus="hidePlaceholder('Precio')">
+        <div class="popup-content-label">
+            Fecha:
+        </div>
         <input type="text" v-model="Fecha" placeholder="Fecha" :class="{ error: errorMessage && !NombreObra }" name="Fecha"
             @focus="hidePlaceholder('Fecha')">
+        <div class="popup-content-label" v-if="isEditing == false">
+            Nombre Obra:
+        </div>
         <input v-if="isEditing == false" type="text" v-model="NombreObra" placeholder="NombreObra"
             :class="{ error: errorMessage && !NombreObra }" name="NombreObra" @focus="hidePlaceholder('NombreObra')">
         <div class="error" v-if="errorMessage">{{ errorMessage }}</div>
@@ -103,12 +115,18 @@ const hidePlaceholder = (inputName: string) => {
     color: black;
 }
 
-.popup-content div {
+
+.popup-content {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 150px;
+    width: 100%;
+}
+
+.popup-content-label {
+    width: 100%;
+    text-align: left;
 }
 
 .close {
