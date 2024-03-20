@@ -20,6 +20,7 @@ interface Sesion {
     obraId: number,
     nombre: string,
     date: Date,
+    precio: number
 }
 
 export const intranetFunctionsStore = defineStore('intranetFunctions', () => {

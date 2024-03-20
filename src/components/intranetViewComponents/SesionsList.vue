@@ -16,6 +16,7 @@ const props = defineProps<{
     obraId: number,
     nombre: string,
     date: Date,
+    precio: number
 }>()
 
 
@@ -28,9 +29,9 @@ const sesions = intranetSesionFunctions.theaterSesions;
 
 <template>
   <main>
-    <SesionsOpenPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :is-editing="false"></SesionsOpenPopUpButton>
+    <SesionsOpenPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :precio="precio" :is-editing="false"></SesionsOpenPopUpButton>
     <SesionLineTitle></SesionLineTitle>
-    <SesionLine v-for="(sesion, index) in sesions" :key="index" :id="sesion.id" :salaId="sesion.salaId" :obraId="sesion.obraId" :nombre="sesion.nombre" :date="sesion.date"
+    <SesionLine v-for="(sesion, index) in sesions" :key="index" :id="sesion.id" :salaId="sesion.salaId" :obraId="sesion.obraId" :nombre="sesion.nombre" :date="sesion.date" :precio="sesion.precio"
       :class="{ par: index % 2 === 0, impar: index % 2 != 0 }">
     </SesionLine>
   </main>

@@ -8,6 +8,7 @@ const props = defineProps<{
     obraId: number,
     nombre: string,
     date: Date,
+    precio: number,
   isEditing: boolean
 }>()
 
@@ -41,7 +42,7 @@ const src = defineImage()
 <template>
   <button @click="openPopup()"><img :src="src" alt="" id="image"></button>
   <div class="popup" v-if="showPopup">
-    <PopUp :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :is-editing="isEditing"
+    <PopUp :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :precio="precio" :is-editing="isEditing"
       @close-popup="closePopup">
     </PopUp>
   </div>

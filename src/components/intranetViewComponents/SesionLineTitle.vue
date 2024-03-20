@@ -7,7 +7,9 @@ import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
 <template>
     <div>
         <p class="playLine-name"> SalaId </p>
-        <p class="playLine-description"> Fecha </p>
+        <p class="playLine-name"> Fecha </p>
+        <p class="playLine-name"> Precio </p>
+
         <p>Opciones</p>
     </div>
 </template>

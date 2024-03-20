@@ -15,32 +15,47 @@ const props = defineProps<{
     obraId: number,
     nombre: string,
     date: Date,
-  isEditing: boolean
+    precio: number,
+    isEditing: boolean
 }>()
 
 const showPopup = ref(false);
 const SalaId = ref(props.salaId);
 const NombreObra = ref(props.nombre);
 const Fecha = ref(props.date);
+const Precio = ref(props.precio);
+
 const errorMessage = ref('');
 
 
-
+var isCreating = false;
 const saveData = (id: number) => {
 
 
-  const data = {
-    "SalaId": SalaId.value,
-    "Fecha": Fecha.value,
-  }
+    const data = {
+        "SalaId": SalaId.value,
+        "Fecha": Fecha.value,
+        "Precio": Precio.value
+    }
 
-  if(props.isEditing === true){
-    editSesion(id);
-  } else{
-    createSesion(data);
-  }
+    if (!SalaId.value || !Fecha.value || !Precio.value) {
+        if (Precio.value === 0) {
+            errorMessage.value = "La duración de una obra no puede ser 0";
+            return;
+        }
 
-  emit('closePopup');
+        errorMessage.value = "Todos los campos son obligatorios";
+        return;
+    }
+
+    if (props.isEditing === true) {
+        editSesion(id);
+    } else {
+        isCreating = true;
+        createSesion(data);
+    }
+
+    emit('closePopup');
 };
 
 const hidePlaceholder = (inputName: string) => {
@@ -50,21 +65,25 @@ const hidePlaceholder = (inputName: string) => {
 </script>
 
 <template>
-        <div class="popup-content">
-            <div class="popup-content-title">
-                <h2>Editar Obra</h2>
-                <span class="close" @click="emit('closePopup')">&times;</span>
-            </div>
-            <input type="text" v-model="SalaId" placeholder="SalaId" :class="{ error: errorMessage && !SalaId }"
-                name="SalaId" @focus="hidePlaceholder('SalaId')">
-            <input type="text" v-model="Fecha" placeholder="Fecha"
-                :class="{ error: errorMessage && !date }" name="Fecha" @focus="hidePlaceholder('Fecha')">
-            <div class="error" v-if="errorMessage">{{ errorMessage }}</div>
-            <div>
-                <button @click="emit('closePopup')">Cancel</button>
-                <button @click="saveData(id)">Save</button>
-            </div>
+    <div class="popup-content">
+        <div class="popup-content-title">
+            <h2>Editar Obra</h2>
+            <span class="close" @click="emit('closePopup')">&times;</span>
         </div>
+        <input type="text" v-model="SalaId" placeholder="SalaId" :class="{ error: errorMessage && !SalaId }" name="SalaId"
+            @focus="hidePlaceholder('SalaId')">
+        <input type="text" v-model="Precio" placeholder="Precio" :class="{ error: errorMessage && !Precio }" name="Precio"
+            @focus="hidePlaceholder('Precio')">
+        <input type="text" v-model="Fecha" placeholder="Fecha" :class="{ error: errorMessage && !NombreObra }" name="Fecha"
+            @focus="hidePlaceholder('Fecha')">
+        <input v-if="isEditing == false" type="text" v-model="NombreObra" placeholder="NombreObra"
+            :class="{ error: errorMessage && !NombreObra }" name="NombreObra" @focus="hidePlaceholder('NombreObra')">
+        <div class="error" v-if="errorMessage">{{ errorMessage }}</div>
+        <div>
+            <button @click="emit('closePopup')">Cancel</button>
+            <button @click="saveData(id)">Save</button>
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -124,5 +143,4 @@ input {
 input.error {
     border: 1px solid red;
 }
-
 </style>

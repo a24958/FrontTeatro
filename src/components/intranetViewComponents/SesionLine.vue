@@ -8,6 +8,7 @@ const props = defineProps<{
     obraId: number,
     nombre: string,
     date: Date,
+    precio: number
 }>()
 
 
@@ -21,10 +22,11 @@ const deletePlay = intranetFunctions.apiCallDelete;
 <template>
     <div>
         <p class="playLine-name"> {{ salaId }}</p>
-        <p class="playLine-duration"> {{ date }} </p>
+        <p class="playLine-description"> {{ date }} </p>
+        <p class="playLine-name"> {{ precio }} </p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editSesion(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
-            <SesionsPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="true"></SesionsPopUpButton>
+            <SesionsPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :precio="precio" :is-editing="true"></SesionsPopUpButton>
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
         </div>
     </div>
@@ -54,7 +56,7 @@ div img {
 }
 
 .playLine-description{
-    width: 50%;
+    width: 25%;
     margin-right: 8px;
 }
 
