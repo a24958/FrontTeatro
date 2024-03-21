@@ -42,31 +42,32 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
         apiCallsFunctions.apiCall('PUT', `Obra/${id}`, data, theaterPlays, id)
     }
 
-    async function apiCallCreate(data:any) {
+    async function apiCallCreate(data: any) {
         const requestOptions: RequestInit = {
-            method: 'POST', 
-            mode: 'cors', 
+            method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             }
         };
-
+    
         requestOptions.body = JSON.stringify(data);
     
         try {
             const response = await fetch('http://localhost:5169/Obra', requestOptions);
-            
+    
             if (!response.ok) {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
-            
-            // const json = await response.json();  
-            // theaterPlays.push(json)
-            
+    
+            // Llamar a apiCallGet para actualizar la lista completa de sesiones
+            await apiCallGet();
+    
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
     }
+    
 
     /*async function apiCallGet() {
         const requestOptions: RequestInit = {
@@ -186,105 +187,64 @@ export const intranetSesionFunctionsStore = defineStore('intranetSesionFunctions
         }
     } 
 
-    async function apiCallEdit(data:any) {
+    async function apiCallEdit(id: number, data: any) {
         const requestOptions: RequestInit = {
-            method: 'POST', 
-            mode: 'cors', 
+            method: 'PUT',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             }
         };
-
+    
         requestOptions.body = JSON.stringify(data);
     
         try {
-            const response = await fetch('http://localhost:5169/Sesion', requestOptions);
-            
+            const response = await fetch(`http://localhost:5169/Sesion/${id}`, requestOptions);
+    
             if (!response.ok) {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
-            
-            // const json = await response.json();  
-            // theaterPlays.push(json)
-            
+    
+            const index = theaterSesions.findIndex(sesion => sesion.id === id);
+            if (index !== -1) {
+                Object.assign(theaterSesions[index], data);
+            } else {
+                console.error('Sesión no encontrada con ID:', id);
+            }
+    
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
     }
 
-    async function apiCallCreate(data:any) {
+    async function apiCallCreate(data: any) {
         const requestOptions: RequestInit = {
-            method: 'POST', 
-            mode: 'cors', 
+            method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             }
         };
-
+    
         requestOptions.body = JSON.stringify(data);
     
         try {
             const response = await fetch('http://localhost:5169/Sesion', requestOptions);
-            
+    
             if (!response.ok) {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
-            
-            // const json = await response.json();  
-            // theaterPlays.push(json)
-            
+    
+            // Llamar a apiCallGet para actualizar la lista completa de sesiones
+            await apiCallGet();
+    
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
     }
-
-    /*async function apiCallGet() {
-        const requestOptions: RequestInit = {
-            method: 'GET', 
-            mode: 'cors', 
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
     
-        try {
-            const response = await fetch('http://localhost:5169/Obra', requestOptions);
-            
-            if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.statusText);
-            }
-            
-            const json = await response.json();  
-            theaterPlays.push(...json);
-            
-        } catch (error) {
-            console.log('Error al hacer la llamada a la API:', error);
-        }
-    }*/ 
-
-    /*async function deletePlay(id: number) {
-        const requestOptions: RequestInit = {
-            method: 'DELETE', 
-            mode: 'cors', 
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
     
-        try {
-            const response = await fetch(`http://localhost:5169/Obra/${id}`, requestOptions);
-            
-            if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.statusText);
-            }
-            
-            var index = theaterPlays.findIndex(play => play.id === id);
-            theaterPlays.splice(index, 1)
-            
-        } catch (error) {
-            console.log('Error al hacer la llamada a la API:', error);
-        }
-    }*/
+
 
     function editSesion(id: number) {
         var sesion = theaterSesions.find(sesion => sesion.id === id);

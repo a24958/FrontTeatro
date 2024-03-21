@@ -17,7 +17,7 @@ const menuFunctions = menuFunctionsStore();
 </template>
 
 
-<style>
+<style scoped>
 .intranet-content {
     display: flex;
     justify-content: space-around;

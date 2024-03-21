@@ -16,26 +16,37 @@ const props = defineProps<{
     nombre: string,
     date: Date,
     precio: number,
+    auditoriaUsuario: number,
     isEditing: boolean
 }>()
 
 const showPopup = ref(false);
+const ObraId = ref(props.salaId);
 const SalaId = ref(props.salaId);
 const NombreObra = ref(props.nombre);
 const Fecha = ref(props.date);
 const Precio = ref(props.precio);
+const auditoriaUsuario = ref(props.precio);
 
 const errorMessage = ref('');
 
 
-var isCreating = false;
 const saveData = (id: number) => {
 
-
     const data = {
-        "SalaId": SalaId.value,
-        "Fecha": Fecha.value,
-        "Precio": Precio.value
+        "obraId": SalaId.value,
+        "horario": Fecha.value,
+        "salaId": SalaId.value,
+        "precio": Precio.value,
+        "auditoriaUsuario": "Admin"
+    }
+
+    const dataCreate = {
+        "horario": Fecha.value,
+        "salaId": SalaId.value,
+        "nombreObra": NombreObra.value,
+        "precio": Precio.value,
+        "auditoriaUsuario": "Admin"
     }
 
     if (!SalaId.value || !Fecha.value || !Precio.value) {
@@ -49,10 +60,9 @@ const saveData = (id: number) => {
     }
 
     if (props.isEditing === true) {
-        editSesion(id);
+        editSesion(id, data);
     } else {
-        isCreating = true;
-        createSesion(data);
+        createSesion(dataCreate);
     }
 
     emit('closePopup');
