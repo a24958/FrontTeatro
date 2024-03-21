@@ -16,7 +16,6 @@ const props = defineProps<{
     nombre: string,
     date: Date,
     precio: number,
-    auditoriaUsuario: number,
     isEditing: boolean
 }>()
 
@@ -26,7 +25,6 @@ const SalaId = ref(props.salaId);
 const NombreObra = ref(props.nombre);
 const Fecha = ref(props.date);
 const Precio = ref(props.precio);
-const auditoriaUsuario = ref(props.precio);
 
 const errorMessage = ref('');
 
@@ -34,7 +32,7 @@ const errorMessage = ref('');
 const saveData = (id: number) => {
 
     const data = {
-        "obraId": SalaId.value,
+        "obraId": ObraId.value,
         "horario": Fecha.value,
         "salaId": SalaId.value,
         "precio": Precio.value,
@@ -93,7 +91,7 @@ const hidePlaceholder = (inputName: string) => {
         <div class="popup-content-label">
             Fecha:
         </div>
-        <input type="text" v-model="Fecha" placeholder="Fecha" :class="{ error: errorMessage && !NombreObra }" name="Fecha"
+        <input type="text" v-model="Fecha" placeholder="Fecha" :class="{ error: errorMessage && !Fecha }" name="Fecha"
             @focus="hidePlaceholder('Fecha')">
         <div class="popup-content-label" v-if="isEditing == false">
             Nombre Obra:

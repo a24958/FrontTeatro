@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { reactive } from "vue";
-import { intranetFunctionsStore } from "../../stores/storeIntranetFunctions";
+import { defineProps } from 'vue';
 import { intranetSesionFunctionsStore } from "../../stores/storeIntranetFunctions";
-
 import SesionLine from "./SesionLine.vue";
-import SesionLineTitle from './SesionLineTitle.vue'
-
-import OpenPopUpButton from "./PlaysOpenPopUpButton.vue";
-import PlaysOpenPopUpButton from "./PlaysOpenPopUpButton.vue";
+import SesionLineTitle from './SesionLineTitle.vue';
 import SesionsOpenPopUpButton from "./SesionsOpenPopUpButton.vue";
 
 const props = defineProps<{
@@ -19,12 +14,13 @@ const props = defineProps<{
     precio: number
 }>()
 
-
 const intranetSesionFunctions = intranetSesionFunctionsStore();
-
 const sesions = intranetSesionFunctions.theaterSesions;
 
-
+const formattedDate = (isoDate: Date): string => {
+  const d = new Date(isoDate);
+  return d.toLocaleDateString('es-ES');
+};
 </script>
 
 <template>
