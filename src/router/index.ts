@@ -10,6 +10,7 @@ import RegisterView from '../views/RegisterView.vue'
 import PlaysView from '../views/PlaysView.vue'
 import SessionsView from '../views/PlaysView.vue'
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -44,6 +45,7 @@ const router = createRouter({
       meta:{
         requiresAuth: true,
         showHeader: false,
+        requiresAdmin: true // Agregamos esta nueva meta para indicar que la ruta requiere el rol de admin
       }
     },
     {
@@ -53,6 +55,7 @@ const router = createRouter({
       meta:{
         requiresAuth: true,
         showHeader: false,
+        requiresAdmin: true // Agregamos esta nueva meta para indicar que la ruta requiere el rol de admin
       }
     },
     {
@@ -62,6 +65,7 @@ const router = createRouter({
       meta:{
         requiresAuth: true,
         showHeader: false,
+        requiresAdmin: true // Agregamos esta nueva meta para indicar que la ruta requiere el rol de admin
       }
     },
     {
@@ -98,5 +102,22 @@ const router = createRouter({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // Verifica si la ruta requiere autenticación y si el usuario tiene el rol adecuado
+  if (to.matched.some(record => record.meta.requiresAuth && record.meta.requiresAdmin)) {
+    const userData = localStorage.getItem('userData');
+    const rol = userData ? JSON.parse(userData).rol : null;
+
+    // Verifica si el usuario tiene el rol de administrador
+    if (rol !== 'Admin') {
+      next('/');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 export default router
