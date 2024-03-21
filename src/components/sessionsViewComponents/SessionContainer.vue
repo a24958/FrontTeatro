@@ -2,12 +2,12 @@
 import router from "@/router";
 import { sessionFunctionsStore } from "../../stores/storeSessionsFunctions";
 import SessionItem from './SessionItem.vue';
-import { ref, toValue } from "vue";
+import { onMounted, ref, toValue } from "vue";
 
 const sessionFunctions = sessionFunctionsStore();
 
-var play = sessionFunctions.play;
-console.log(play);
+const play = sessionFunctions.play;
+
 
 </script>
 <template>

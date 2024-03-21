@@ -13,7 +13,8 @@ const props = defineProps<{
         <p>{{ date }}</p>
         <p>Sala: {{ salaId }}</p>
         <p>Precio: {{ precio }}€</p>
-        <p>Asientos Disponibles{{ asientosDisponibles }}</p>
+        <p>Asientos Disponibles: {{ asientosDisponibles }}</p>
+        <RouterLink :to="'/session/'+ sesionId"><button>ESCOJA SU ASIENTO</button></RouterLink>
     </div>
 </template>
 <style scoped>

@@ -1,6 +1,6 @@
 import router from "@/router";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 interface Session {
     sesionId: number,
@@ -19,16 +19,21 @@ interface Play {
     sesiones: Array<Session>
 }
 
-export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
+interface PlayResponse {
+    play: Play | null;
+    error: string | null;
+}
 
-    var play = ref({
-        id: 0,
-        nombre: '',
-        descripcion: '',
-        rutaFoto: '',
-        duracion: 0,
-        sesiones: Array<Session>()
-    });
+const play = ref<Play>({
+    id: 0,
+    nombre: '',
+    descripcion: '',
+    rutaFoto: '',
+    duracion: 0,
+    sesiones: []
+});
+
+export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
 
     const obraId = router.currentRoute.value.params.obraId[0];
 
@@ -49,6 +54,7 @@ export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
             }
 
             const json = await response.json();
+            
             play.value.id = json["id"];
             play.value.nombre = json["nombre"];
             play.value.descripcion = json["descripcion"];
@@ -56,12 +62,15 @@ export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
             play.value.duracion = json["duracion"];
             play.value.sesiones = json["sesiones"] || [];
 
+            return play
+
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
     }
 
+    getPlayById();
 
 
-    return { getPlayById, play }
+    return { play, getPlayById }
 })
