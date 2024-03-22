@@ -9,6 +9,8 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import PlaysView from '../views/PlaysView.vue'
 import SessionsView from '../views/PlaysView.vue'
+import UserView from '../views/UserView.vue'
+
 
 
 const router = createRouter({
@@ -39,13 +41,21 @@ const router = createRouter({
       }
     },
     {
+      path: '/user',
+      name: 'user',
+      component: UserView,
+      meta:{
+        showHeader: true,
+      }
+    },
+    {
       path: '/intranet',
       name: 'intranet',
       component: IntranetView,
       meta:{
         requiresAuth: true,
         showHeader: false,
-        requiresAdmin: true // Agregamos esta nueva meta para indicar que la ruta requiere el rol de admin
+        requiresAdmin: true 
       }
     },
     {
@@ -55,7 +65,7 @@ const router = createRouter({
       meta:{
         requiresAuth: true,
         showHeader: false,
-        requiresAdmin: true // Agregamos esta nueva meta para indicar que la ruta requiere el rol de admin
+        requiresAdmin: true 
       }
     },
     {
@@ -65,7 +75,7 @@ const router = createRouter({
       meta:{
         requiresAuth: true,
         showHeader: false,
-        requiresAdmin: true // Agregamos esta nueva meta para indicar que la ruta requiere el rol de admin
+        requiresAdmin: true 
       }
     },
     {
@@ -111,7 +121,7 @@ router.beforeEach((to, from, next) => {
 
     // Verifica si el usuario tiene el rol de administrador
     if (rol !== 'Admin') {
-      next('/');
+      next('/login');
     } else {
       next();
     }

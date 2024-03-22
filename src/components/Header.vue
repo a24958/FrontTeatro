@@ -6,18 +6,25 @@ const menuFunctions = menuFunctionsStore();
 </script>
 
 <template>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <header class="navbar" id="Des">
         <RouterLink to="/"><img src="../assets/images/Logo.png" alt="" @click="menuFunctions.closeMenu"></RouterLink>
         <span class="menu-icon" @click="menuFunctions.toggleMenu">&#9776;</span>
         <ul class="nav-list">
-            <li class="nav-item link" @click="menuFunctions.closeMenu"><RouterLink to="/contact">CONTACTO</RouterLink></li>
+            <li class="nav-item link" @click="menuFunctions.closeMenu">
+                <RouterLink to="/contact">CONTACTO</RouterLink>
+            </li>
             <li class="nav-item">
                 <a>OBRAS</a>
             </li>
-            <li class="nav-item link" @click="menuFunctions.closeMenu"><RouterLink to="/rent">ALQUILER</RouterLink></li>
-            <li class="nav-item" id="login" @click="menuFunctions.closeMenu"><RouterLink to="/login">LOGIN</RouterLink></li>
-            <li class="nav-item" id="carrito" @click="menuFunctions.closeMenu"><a href="#">CARRITO</a></li>
+            <li class="nav-item link" @click="menuFunctions.closeMenu">
+                <RouterLink to="/rent">ALQUILER</RouterLink>
+            </li>
+            <li class="nav-item" id="login" @click="menuFunctions.closeMenu">
+                <RouterLink to="/login">LOGIN</RouterLink>
+            </li>
+            <li class="nav-item" id="carrito" @click="menuFunctions.closeMenu"><a href="#">USUARIO</a></li>
         </ul>
     </header>
     <header class="header-desktop">
@@ -30,7 +37,7 @@ const menuFunctions = menuFunctionsStore();
             </div>
             <div id="Der">
                 <RouterLink to="/login">LOGIN</RouterLink>
-                <a href="#">🛒</a>
+                <RouterLink to="/user"><img class="icon" src="../assets/images/usuario.png" alt=""></RouterLink>
             </div>
         </nav>
     </header>
@@ -54,6 +61,7 @@ ul {
     height: 64px;
     width: 64px;
 }
+
 
 .menu-icon {
     display: flex;
@@ -159,61 +167,79 @@ ul {
 }
 
 @media screen and (min-width: 800px) {
-  .navbar {
-    display: none;
-  }
-  .header-desktop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .header-desktop nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .header-desktop nav #Izq {
-    width: 400px;
-  }
-  .header-desktop nav #Der {
-    width: 100px;
-    margin-right: 16px;
-  }
-  .header-desktop nav div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .header-desktop nav div a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    position: relative;
-    text-decoration: none;
-    color: rgb(63, 63, 63);
-  }
-  .header-desktop nav div a::after {
-    content: "";
-    position: absolute;
-    background-color: #3385D9;
-    height: 3px;
-    width: 0;
-    left: 0;
-    bottom: -5px;
-    transition: 0.3s;
-  }
-  .header-desktop nav div a:hover {
-    color: #050505;
-  }
-  .header-desktop nav div a:hover::after {
-    width: 100%;
-  }
-  .header-desktop nav div a img {
-    height: 64px;
-    width: 64px;
-  }
+    .navbar {
+        display: none;
+    }
+
+
+
+
+    .header-desktop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .header-desktop nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .header-desktop nav #Izq {
+        width: 400px;
+    }
+
+    .header-desktop nav #Der {
+        width: 100px;
+        margin-right: 16px;
+    }
+
+    .header-desktop nav div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header-desktop nav div a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        position: relative;
+        text-decoration: none;
+        color: rgb(63, 63, 63);
+    }
+
+    .header-desktop nav div a::after {
+        content: "";
+        position: absolute;
+        background-color: #3385D9;
+        height: 3px;
+        width: 0;
+        left: 0;
+        bottom: -5px;
+        transition: 0.3s;
+    }
+
+    .header-desktop nav div a:hover {
+        color: #050505;
+    }
+
+    .header-desktop nav div a:hover::after {
+        width: 100%;
+    }
+
+    .header-desktop nav div a img {
+        height: 64px;
+        width: 64px;
+    }
+
+    .header-desktop.icon {
+        height: 32px;
+        width: 32px;
+    }
 }
 </style>../utils/MenuFunctions
