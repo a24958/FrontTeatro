@@ -10,13 +10,15 @@ interface Session {
     asientosDisponibles: number
 }
 
+
+
 interface Play {
     id: number,
     nombre: string,
     descripcion: string,
     rutaFoto: string,
     duracion: number
-    sesiones: Array<Session>
+    sesiones: Session[]
 }
 
 const play = ref<Play>({
@@ -28,7 +30,18 @@ const play = ref<Play>({
     sesiones: []
 });
 
+
+
+const rawData = ref()
+
+const seatData = ref<Play[]>()
+
 export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
+
+
+    function setData(newData: Play[]) {
+        seatData.value = newData
+    }
 
     const obraId = router.currentRoute.value.params.obraId[0];
 
@@ -49,23 +62,22 @@ export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
             }
 
             const json = await response.json();
-            
-            play.value.id = json["id"];
-            play.value.nombre = json["nombre"];
-            play.value.descripcion = json["descripcion"];
-            play.value.rutaFoto = json["rutaFoto"];
-            play.value.duracion = json["duracion"];
-            play.value.sesiones = json["sesiones"] || [];
+            const mappedData = [{
+                "id": json["id"],
+                "nombre": json["nombre"],
+                "descripcion": json["descripcion"],
+                "rutaFoto": json["rutaFoto"],
+                "duracion": json["duracion"],
+                "sesiones": json["sesiones"] || [],
+            }];
+            setData(mappedData);
 
-            return play
 
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
         }
     }
 
-    getPlayById();
 
-
-    return { play, getPlayById }
+    return { seatData, getPlayById }
 })

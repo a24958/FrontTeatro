@@ -32,9 +32,11 @@ const session = ref<Session>({
     asientos: []
 });
 
-export const seatSelectorFunctionsStore = defineStore('loginFunctions', () => {
+export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', () => {
 
     const sessionId = router.currentRoute.value.params.sesionId[0];
+
+    getSessionById();
 
     async function getSessionById() {
         const requestOptions: RequestInit = {
@@ -70,8 +72,6 @@ export const seatSelectorFunctionsStore = defineStore('loginFunctions', () => {
             console.log('Error al hacer la llamada a la API:', error);
         }
     }
-
-    getSessionById();
 
     return { getSessionById, session }
 })

@@ -8,6 +8,9 @@ import RegisterView from '../views/RegisterView.vue'
 import PlaysView from '../views/PlaysView.vue'
 import SessionsView from '../views/SessionView.vue'
 import SeatSelectorView from '../views/SeatSelectorView.vue'
+import { sessionFunctionsStore } from "@/stores/storeSessionsFunctions";
+
+const store = sessionFunctionsStore();
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +19,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta:{
+      meta: {
         showHeader: true,
       }
     },
@@ -24,7 +27,7 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: ContactView,
-      meta:{
+      meta: {
         showHeader: true,
       }
     },
@@ -32,7 +35,7 @@ const router = createRouter({
       path: '/rent',
       name: 'rent',
       component: RentView,
-      meta:{
+      meta: {
         showHeader: true,
       }
     },
@@ -40,7 +43,7 @@ const router = createRouter({
       path: '/intranet',
       name: 'intranet',
       component: IntranteView,
-      meta:{
+      meta: {
         requiresAuth: true,
         showHeader: false,
       }
@@ -49,7 +52,7 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
-      meta:{
+      meta: {
         showHeader: true,
       }
     },
@@ -57,7 +60,7 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView,
-      meta:{
+      meta: {
         showHeader: true,
       }
     },
@@ -66,7 +69,7 @@ const router = createRouter({
       name: 'plays',
       component: PlaysView,
       props: true,
-      meta:{
+      meta: {
         showHeader: true,
       }
     },
@@ -75,8 +78,9 @@ const router = createRouter({
       name: 'play',
       component: SessionsView,
       props: true,
-      meta:{
+      meta: {
         showHeader: true,
+        requiresFetch: true
       }
     },
     {
@@ -84,11 +88,19 @@ const router = createRouter({
       name: 'session',
       component: SeatSelectorView,
       props: true,
-      meta:{
+      meta: {
         showHeader: true,
       }
     },
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresFetch) {
+    store.getPlayById().then(() => { next(); })
+  } else {
+    next();
+  }
 })
 
 export default router

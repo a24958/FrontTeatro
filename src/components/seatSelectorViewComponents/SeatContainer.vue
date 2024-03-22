@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import SeatSvg from './SeatSvg.vue'
 import { seatSelectorFunctionsStore } from "../../stores/storeSeatSelectorFunctions";
+import { reactive } from 'vue';
+import CardItemTicket from './CardItemTicket.vue';
+import { storeToRefs } from 'pinia';
 
 const seatSelectorFunctions = seatSelectorFunctionsStore();
+const store = seatSelectorFunctionsStore();
+const { session: sessionSeats } = storeToRefs(store)
 
-const session = seatSelectorFunctions.session;
-
+/* const session = seatSelectorFunctions.session;
+ */
 interface Seat {
     id: number,
     tipoAsiento: number,
@@ -13,6 +18,21 @@ interface Seat {
     ocupado: boolean
 }
 
+interface Session {
+    sesionId: number,
+    date: Date,
+    salaId: number,
+    precio: number,
+    asientosDisponibles: number
+}
+
+interface Card {
+    asientoId: number,
+    nombreObra: string,
+    fecha: Date,
+    precio: number,
+    sala: number,
+}
 
 interface SeatStyle {
     back: string,
@@ -59,19 +79,52 @@ function getSeatType(seat: Seat) {
     }
 
 }
+
+let seats = reactive(Array<Card>());
+
+function addCard(asientoId: number, suplemento: number) {
+    var play: Card = {
+        asientoId: asientoId,
+        nombreObra: sessionSeats.value.nombreObra,
+        fecha: sessionSeats.value.date!,
+        precio: sessionSeats.value.precio + suplemento,
+        sala: sessionSeats.value.salaId,
+    }
+
+
+
+    const index = seats.findIndex(playTicket => playTicket.asientoId === play.asientoId);
+
+    if (index !== -1) {
+        seats.splice(index, 1);
+    } else {
+        seats.push(play);
+    }
+}
 </script>
 <template>
     <div class="seatContainer">
-        <SeatSvg v-for="(seat, index) in session.asientos.reverse()" :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
+        <SeatSvg v-for="(seat, index) in sessionSeats.asientos.reverse()" :id="seat.id" :type="getSeatType(seat)"
+            @click="addCard(seat.id, seat.suplemento)"></SeatSvg>
     </div>
+
+    <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
+        :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket>
 </template>
 <style scoped>
 .seatContainer {
+    margin-top: 48px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    width: 70%;
+    width: 500px;
+}
+
+@media screen and (min-width: 1000px) {
+    .seatContainer {
+        width: 1000px;
+    }
 }
 </style>

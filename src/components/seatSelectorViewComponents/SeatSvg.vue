@@ -18,7 +18,7 @@ function test() {
 </script>
 <template>
 
-    <svg :id="`${id}`" @click="test()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 80" width="100" height="80">
+    <svg :id="`${id}`" @click="test()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 80" width="50" height="40">
 
         <!-- Respaldo con esquinas redondeadas -->
         <rect id="respaldo" x="5" y="10" width="45" height="40" :fill="`${type.back}`" rx="10" ry="10" />
@@ -38,26 +38,29 @@ function test() {
 <style scoped>
 svg {
     transition: transform 0.3s ease;
-    /* Aplica una transición suave por defecto */
+    
 }
 
 svg:hover {
     transform: scale(1.05) translateY(-5px);
-    /* Aumenta el tamaño en un 5% y levanta 5px cuando se pasa el ratón por encima */
 }
 
 svg.selected #respaldo {
     fill: #ff8a14;
-    /* Cambia el color del asiento seleccionado */
 }
 
 svg.selected #base {
     fill: #eb7600;
-    /* Cambia el color del asiento seleccionado */
 }
 
 svg.selected #resto {
     fill: #cc6600;
-    /* Cambia el color del asiento seleccionado */
+}
+
+@media screen and (min-width: 1000px){
+    svg{
+        width: 100px;
+        height: 80px;
+    }
 }
 </style>
