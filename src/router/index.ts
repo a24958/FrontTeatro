@@ -7,6 +7,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import PlaysView from '../views/PlaysView.vue'
 import SessionsView from '../views/SessionView.vue'
+import SeatSelectorView from '../views/SeatSelectorView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -73,6 +74,15 @@ const router = createRouter({
       path: '/play/:obraId',
       name: 'play',
       component: SessionsView,
+      props: true,
+      meta:{
+        showHeader: true,
+      }
+    },
+    {
+      path: '/session/:sesionId',
+      name: 'session',
+      component: SeatSelectorView,
       props: true,
       meta:{
         showHeader: true,

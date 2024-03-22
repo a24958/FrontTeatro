@@ -19,11 +19,6 @@ interface Play {
     sesiones: Array<Session>
 }
 
-interface PlayResponse {
-    play: Play | null;
-    error: string | null;
-}
-
 const play = ref<Play>({
     id: 0,
     nombre: '',
