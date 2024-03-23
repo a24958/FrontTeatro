@@ -8,20 +8,42 @@ interface Sesion {
     date: Date; 
 }
   
-interface Compra {
+interface Buy {
     id: number;
     precio: number;
     asientos: number[];
     sesion: Sesion;
 }
-  
+
 interface User {
-    id: number;
-    nombre: string;
-    compras: Compra[];
+    id: number,
+    email: string,
+    password: string,
+    nombre: string,
+    rol: string
 }
 
+function getUserDataFromLocalStorage(): User | null {
+    const userDataString = localStorage.getItem('userData');
+    if (userDataString) {
+        const userData: User = JSON.parse(userDataString);
+        return userData;
+    } else {
+        return null;
+    }
+}
+
+  
+
 export const userFunctionsStore = defineStore('userFunctionsStore', () => {
+    
+
+    
+    var UserBuys = reactive(Array<Buy>());
+    var user = getUserDataFromLocalStorage()
+    getUserById(user.id);
+
+
     async function getUserById(userId: number) {
 
         try {
@@ -36,20 +58,16 @@ export const userFunctionsStore = defineStore('userFunctionsStore', () => {
             if (!response.ok) {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
+            const json = await response.json();
+            console.log(json)
+            UserBuys.push(...json);
 
-            const userData: User = await response.json();
-
-            
-            
-            // Guardar datos en el Local Storage
-            localStorage.setItem('userData', JSON.stringify(userData));
-
-            return userData;
+                
         } catch (error) {
             console.log('Error al hacer la llamada a la API:', error);
             return null; // Retorna null en caso de error
         }
     }
     
-    return {getUserById };
+    return {UserBuys, getUserById };
 });

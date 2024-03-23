@@ -1,42 +1,30 @@
 <script setup lang="ts">
+import { reactive } from "vue";
 import { userFunctionsStore } from '../../stores/storeUserFunctions';
-const intranetFunctions = userFunctionsStore();
+import UserBuyItem from "./UserBuyItem.vue"
 
-const userId = 1; 
-const { getUserById } = intranetFunctions;
-const user = getUserById(userId);
+
+const props = defineProps<{
+  id: number,
+  precio: number,
+  asientos: number[],
+  sesion: {
+    salaId: number,
+    nombreObra: string,
+    date: Date
+  }
+}>()
+
+const userFunctions = userFunctionsStore();
+const users = userFunctions.UserBuys;
+
+
 </script>
-
 <template>
-    <div class="obras-section">
-      <div v-if="user">
-        <h2>Información del Usuario</h2>
-        <p>ID: {{ user.id }}</p>
-        <p>Nombre: {{ user.nombre }}</p>
-        <h3>Compras:</h3>
-        <div v-for="(compra, index) in user.compras" :key="index">
-          <p>Compra ID: {{ compra.id }}</p>
-          <p>Precio: {{ compra.precio }}</p>
-          <p>Asientos: {{ compra.asientos.join(', ') }}</p>
-          <h4>Sesión:</h4>
-          <p>Sala ID: {{ compra.sesion.salaId }}</p>
-          <p>Nombre de la obra: {{ compra.sesion.nombreObra }}</p>
-          <p>Fecha: {{ compra.sesion.date }}</p>
-        </div>
-      </div>
-      <div v-else>
-        <p>Cargando...</p>
-      </div>
-    </div>
+  <main>
+    <UserBuyItem v-for="(user, index) in users" :id="user.id" :precio="user.precio" :asientos="user.asientos" :sesion="user.sesion"></UserBuyItem>
+  </main>
 </template>
-  
 <style scoped>
-.obras-section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-}
+
 </style>

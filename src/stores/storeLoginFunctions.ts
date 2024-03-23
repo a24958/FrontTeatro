@@ -10,6 +10,7 @@ interface User {
 }
 
 export const loginFunctionsStore = defineStore('loginFunctions', () => {
+    
     async function getUser(email: string, password: string) {
         const requestOptions: RequestInit = {
             method: 'POST',
