@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
+import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
 
 </script>
 
 <template>
     <div>
-        <p> SalaId </p>
-        <p> Fecha </p>
+        <p> ID Compra</p>
+        <p> ID Usuario</p>
+        <p> ID Sesion </p>
         <p> Precio </p>
-        <p>Opciones</p>
+        <p> Fecha </p>
     </div>
 </template>
 

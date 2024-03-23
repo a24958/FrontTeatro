@@ -5,11 +5,14 @@ import RentView from '../views/RentView.vue'
 import IntranetView from '../views/IntranetView.vue'
 import IPlaysView from '../views/IPlaysView.vue'
 import ISesionsView from '../views/ISesionsView.vue'
+import IBuysView from '../views/IBuysView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import PlaysView from '../views/PlaysView.vue'
 import SessionsView from '../views/PlaysView.vue'
 import UserView from '../views/UserView.vue'
+import Error401View from '../views/Error401view.vue'
+
 
 
 
@@ -79,6 +82,16 @@ const router = createRouter({
       }
     },
     {
+      path: '/intranet/buys',
+      name: 'i-buys',
+      component: IBuysView,
+      meta:{
+        requiresAuth: true,
+        showHeader: false,
+        requiresAdmin: true 
+      }
+    },
+    {
       path: '/login',
       name: 'login',
       component: LoginView,
@@ -110,6 +123,14 @@ const router = createRouter({
         showHeader: true,
       }
     },
+    {
+      path: '/error401',
+      name: 'error401',
+      component: Error401View,
+      meta:{
+        showHeader: true,
+      }
+    },
   ]
 })
 
@@ -121,7 +142,7 @@ router.beforeEach((to, from, next) => {
 
     // Verifica si el usuario tiene el rol de administrador
     if (rol !== 'Admin') {
-      next('/login');
+      next('/error401');
     } else {
       next();
     }

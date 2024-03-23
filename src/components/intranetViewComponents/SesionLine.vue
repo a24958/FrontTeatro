@@ -21,9 +21,9 @@ const deletePlay = intranetFunctions.apiCallDelete;
 
 <template>
     <div>
-        <p class="playLine-name"> {{ salaId }}</p>
-        <p class="playLine-description"> {{ date }} </p>
-        <p class="playLine-name"> {{ precio }} </p>
+        <p> {{ salaId }}</p>
+        <p> {{ date }} </p>
+        <p> {{ precio }} </p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editSesion(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
             <SesionsPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :precio="precio" :is-editing="true"></SesionsPopUpButton>

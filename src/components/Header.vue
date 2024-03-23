@@ -166,6 +166,11 @@ ul {
     color: white;
 }
 
+.header-desktop #Der img {
+    height: 32px;
+    width: 32px;
+}
+
 @media screen and (min-width: 800px) {
     .navbar {
         display: none;
@@ -237,9 +242,7 @@ ul {
         width: 64px;
     }
 
-    .header-desktop.icon {
-        height: 32px;
-        width: 32px;
-    }
+
+
 }
-</style>../utils/MenuFunctions
+</style>

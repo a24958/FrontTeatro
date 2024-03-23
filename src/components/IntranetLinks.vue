@@ -13,6 +13,9 @@ const menuFunctions = menuFunctionsStore();
         <button class="intranet-content-button">
             <RouterLink to="/intranet/plays">OBRAS</RouterLink>
         </button>
+        <button class="intranet-content-button">
+            <RouterLink to="/intranet/buys">COMPRAS</RouterLink>
+        </button>
     </div>
 </template>
 

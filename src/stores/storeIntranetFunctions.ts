@@ -23,6 +23,13 @@ interface Sesion {
     precio: number
 }
 
+interface Buy {
+    compraId: number,
+    usuarioId: number,
+    sesionId: number,
+    precio: number,
+    fecha: Date,
+}
 export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
     const apiCallsFunctions = apiCallsFunctionsStore();
 
@@ -259,4 +266,119 @@ export const intranetSesionFunctionsStore = defineStore('intranetSesionFunctions
     }
 
     return { theaterSesions, apiCallDelete, editSesion, apiCallGet, apiCallEdit, apiCallCreate }
+});
+
+export const intranetBuyFunctionsStore = defineStore('intranetBuyFunctions', () => {
+    const apiCallsFunctions = apiCallsFunctionsStore();
+
+    var theaterBuys = reactive(Array<Buy>());
+
+    apiCallGet();
+
+    async function apiCallGet() {
+        const requestOptions: RequestInit = {
+            method: 'GET', 
+            mode: 'cors', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+    
+        try {
+            const response = await fetch('http://localhost:5169/Compra', requestOptions);
+            
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            
+            const json = await response.json();  
+            theaterBuys.push(...json);
+            
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+        }
+    }
+    
+    /*async function apiCallDelete(id: number) {
+        const requestOptions: RequestInit = {
+            method: 'DELETE', 
+            mode: 'cors', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+    
+        try {
+            const response = await fetch(`http://localhost:5169/Compra/${id}`, requestOptions);
+            
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            
+            var index = theaterBuys.findIndex(play => play.id === id);
+            theaterBuys.splice(index, 1)
+            
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+        }
+    } */
+
+    /*async function apiCallEdit(id: number, data: any) {
+        const requestOptions: RequestInit = {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+    
+        requestOptions.body = JSON.stringify(data);
+    
+        try {
+            const response = await fetch(`http://localhost:5169/Sesion/${id}`, requestOptions);
+    
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+    
+            const index = theaterBuys.findIndex(sesion => sesion.id === id);
+            if (index !== -1) {
+                Object.assign(theaterBuys[index], data);
+            } else {
+                console.error('Sesión no encontrada con ID:', id);
+            }
+    
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+        }
+    }*/
+
+    /*async function apiCallCreate(data: any) {
+        const requestOptions: RequestInit = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+    
+        requestOptions.body = JSON.stringify(data);
+    
+        try {
+            const response = await fetch('http://localhost:5169/Sesion', requestOptions);
+    
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+    
+            // Llamar a apiCallGet para actualizar la lista completa de sesiones
+            await apiCallGet();
+    
+        } catch (error) {
+            console.log('Error al hacer la llamada a la API:', error);
+        }
+    }*/
+    
+    
+    return { theaterBuys, apiCallGet, }
 });
