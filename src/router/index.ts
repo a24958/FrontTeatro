@@ -49,7 +49,10 @@ const router = createRouter({
       name: 'user',
       component: UserView,
       meta:{
+        requiresAuth: true,
         showHeader: true,
+        requiresGuest: true 
+
       }
     },
     {
@@ -153,7 +156,7 @@ router.beforeEach((to, from, next) => {
 
     // Verifica si el usuario tiene el rol de administrador
     if (rol !== 'Admin') {
-      next('/error401');
+      next('/login');
     } else {
       next();
     }
@@ -162,4 +165,19 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth && record.meta.requiresGuest)) {
+    const userData = localStorage.getItem('userData');
+    const rol = userData ? JSON.parse(userData).rol : null;
+
+    // Verifica si el usuario tiene el Guest de administrador
+    if (rol !== 'Guest') {
+      next('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 export default router
