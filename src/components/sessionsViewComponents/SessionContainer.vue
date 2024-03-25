@@ -2,13 +2,17 @@
 import router from "@/router";
 import { sessionFunctionsStore } from "../../stores/storeSessionsFunctions";
 import SessionItem from './SessionItem.vue';
-import { onMounted, ref, toValue } from "vue";
+import { onBeforeMount, ref, toValue } from "vue";
 import { storeToRefs } from "pinia";
 
-// const sessionFunctions = sessionFunctionsStore();
-
 const store = sessionFunctionsStore();
+const obraId =  router.currentRoute.value.params.obraId[0]
 
+onBeforeMount(() => {
+    store.getPlayById(obraId);
+})
+
+const { seatData: data } = storeToRefs(store);
 interface Play {
     id: number,
     nombre: string,
@@ -26,26 +30,16 @@ interface Session {
     asientosDisponibles: number;
 }
 
-
-const { seatData: data } = storeToRefs(store);
-
-
 </script>
 <template >
-    <div @click="store.getPlayById()">
-        aaaaaaaaaaa
-        {{ data }}
-    </div>
-    <template v-if="data">
-        <div v-for="element in data" :key="element.id">
-            <div v-for="session in element.sesiones" :key="session.sesionId">
-                <SessionItem :sesion-id="session.sesionId" :date="session.date" :salaId="session.salaId"
-                    :precio="session.precio" :asientos-disponibles="session.asientosDisponibles">
-                    <!-- Your SessionItem content here -->
-                </SessionItem>
-            </div>
+    <div v-for="element in data" :key="element.id">
+        <div v-for="session in element.sesiones" :key="session.sesionId">
+            <SessionItem :sesion-id="session.sesionId" :date="session.date" :salaId="session.salaId"
+                :precio="session.precio" :asientos-disponibles="session.asientosDisponibles">
+                <!-- Your SessionItem content here -->
+            </SessionItem>
         </div>
-    </template>
+    </div>
 </template>
 <style scoped></style>
 

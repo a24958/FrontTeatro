@@ -36,6 +36,7 @@ const rawData = ref()
 
 const seatData = ref<Play[]>()
 
+
 export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
 
 
@@ -43,9 +44,10 @@ export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
         seatData.value = newData
     }
 
-    const obraId = router.currentRoute.value.params.obraId[0];
+    var obraId = ref(router.currentRoute.value.params.obraId[0])
+    obraId.value =  router.currentRoute.value.params.obraId[0]
 
-    async function getPlayById() {
+    async function getPlayById(obraId: string) {
         const requestOptions: RequestInit = {
             method: 'GET',
             mode: 'cors',
