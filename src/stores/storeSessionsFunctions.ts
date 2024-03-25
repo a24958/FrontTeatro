@@ -10,8 +10,6 @@ interface Session {
     asientosDisponibles: number
 }
 
-
-
 interface Play {
     id: number,
     nombre: string,
@@ -43,9 +41,6 @@ export const sessionFunctionsStore = defineStore('sessionFunctions', () => {
     function setData(newData: Play[]) {
         seatData.value = newData
     }
-
-    var obraId = ref(router.currentRoute.value.params.obraId[0])
-    obraId.value =  router.currentRoute.value.params.obraId[0]
 
     async function getPlayById(obraId: string) {
         const requestOptions: RequestInit = {

@@ -10,7 +10,7 @@ const props = defineProps<{
     type: SeatStyle
 }>()
 
-function test() {
+function selectSeat() {
     var asiento = document.getElementById(`${props.id}`) as HTMLElement;
     asiento.classList.toggle('selected');
 }
@@ -18,7 +18,7 @@ function test() {
 </script>
 <template>
 
-    <svg :id="`${id}`" @click="test()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 80" width="50" height="40">
+    <svg :id="`${id}`" @click="selectSeat()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 80" width="50" height="40">
 
         <!-- Respaldo con esquinas redondeadas -->
         <rect id="respaldo" x="5" y="10" width="45" height="40" :fill="`${type.back}`" rx="10" ry="10" />
@@ -55,6 +55,13 @@ svg.selected #base {
 
 svg.selected #resto {
     fill: #cc6600;
+}
+
+@media screen and (min-width: 800px){
+    svg{
+        width: 80px;
+        height: 60px;
+    }
 }
 
 @media screen and (min-width: 1000px){

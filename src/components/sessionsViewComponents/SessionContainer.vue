@@ -36,7 +36,6 @@ interface Session {
         <div v-for="session in element.sesiones" :key="session.sesionId">
             <SessionItem :sesion-id="session.sesionId" :date="session.date" :salaId="session.salaId"
                 :precio="session.precio" :asientos-disponibles="session.asientosDisponibles">
-                <!-- Your SessionItem content here -->
             </SessionItem>
         </div>
     </div>

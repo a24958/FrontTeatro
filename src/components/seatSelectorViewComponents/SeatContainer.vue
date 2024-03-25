@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import SeatSvg from './SeatSvg.vue'
 import { seatSelectorFunctionsStore } from "../../stores/storeSeatSelectorFunctions";
-import { reactive } from 'vue';
+import { onBeforeMount, reactive } from 'vue';
 import CardItemTicket from './CardItemTicket.vue';
 import { storeToRefs } from 'pinia';
+import router from '@/router';
 
-const seatSelectorFunctions = seatSelectorFunctionsStore();
 const store = seatSelectorFunctionsStore();
-const { session: sessionSeats } = storeToRefs(store)
+const sessionId =  router.currentRoute.value.params.sesionId[0];
+
+onBeforeMount(() => {
+    store.getSessionById(sessionId)
+})
+
+const { sessionData: sessionSeats } = storeToRefs(store)
 
 /* const session = seatSelectorFunctions.session;
  */
@@ -82,31 +88,32 @@ function getSeatType(seat: Seat) {
 
 let seats = reactive(Array<Card>());
 
-function addCard(asientoId: number, suplemento: number) {
-    var play: Card = {
-        asientoId: asientoId,
-        nombreObra: sessionSeats.value.nombreObra,
-        fecha: sessionSeats.value.date!,
-        precio: sessionSeats.value.precio + suplemento,
-        sala: sessionSeats.value.salaId,
-    }
+// function addCard(asientoId: number, suplemento: number) {
+//     var play: Card = {
+//         asientoId: asientoId,
+//         nombreObra: sessionSeats.value.nombreObra,
+//         fecha: sessionSeats.value.date!,
+//         precio: sessionSeats.value.precio + suplemento,
+//         sala: sessionSeats.value.salaId,
+//     }
 
 
 
-    const index = seats.findIndex(playTicket => playTicket.asientoId === play.asientoId);
+//     const index = seats.findIndex(playTicket => playTicket.asientoId === play.asientoId);
 
-    if (index !== -1) {
-        seats.splice(index, 1);
-    } else {
-        seats.push(play);
-    }
-}
+//     if (index !== -1) {
+//         seats.splice(index, 1);
+//     } else {
+//         seats.push(play);
+//     }
+// }
 </script>
 <template>
-    <div class="seatContainer">
-        <SeatSvg v-for="(seat, index) in sessionSeats.asientos.reverse()" :id="seat.id" :type="getSeatType(seat)"
-            @click="addCard(seat.id, seat.suplemento)"></SeatSvg>
-    </div>
+        <div v-for="element in sessionSeats" :key="element.id" class="seatContainer">
+            <div v-for="seat in element.asientos.reverse()">
+                <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
+            </div>
+        </div>
 
     <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
         :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket>
@@ -120,6 +127,12 @@ function addCard(asientoId: number, suplemento: number) {
     justify-content: center;
     flex-wrap: wrap;
     width: 500px;
+}
+
+@media screen and (min-width: 800px) {
+    .seatContainer {
+        width: 800px;
+    }
 }
 
 @media screen and (min-width: 1000px) {
