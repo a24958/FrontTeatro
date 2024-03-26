@@ -86,7 +86,7 @@ function getSeatType(seat: Seat) {
 
 }
 
-let seats = reactive(Array<Card>());
+let seats = reactive(Array<Seat>());
 
 // function addCard(asientoId: number, suplemento: number) {
 //     var play: Card = {
@@ -115,8 +115,8 @@ let seats = reactive(Array<Card>());
             </div>
         </div>
 
-    <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
-        :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket>
+    <!-- <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
+        :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket> -->
 </template>
 <style scoped>
 .seatContainer {

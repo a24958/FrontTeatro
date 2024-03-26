@@ -6,10 +6,10 @@ import { onBeforeMount, ref, toValue } from "vue";
 import { storeToRefs } from "pinia";
 
 const store = sessionFunctionsStore();
-const obraId =  router.currentRoute.value.params.obraId[0]
+const obraId = router.currentRoute.value.params.obraId[0]
 
-onBeforeMount(() => {
-    store.getPlayById(obraId);
+onBeforeMount(async () => {
+    await store.getPlayById(obraId);
 })
 
 const { seatData: data } = storeToRefs(store);
@@ -33,11 +33,10 @@ interface Session {
 </script>
 <template >
     <div v-for="element in data" :key="element.id">
-        <div v-for="session in element.sesiones" :key="session.sesionId">
-            <SessionItem :sesion-id="session.sesionId" :date="session.date" :salaId="session.salaId"
-                :precio="session.precio" :asientos-disponibles="session.asientosDisponibles">
-            </SessionItem>
-        </div>
+        <SessionItem v-for="session in element.sesiones" :key="session.sesionId" :sesion-id="session.sesionId"
+            :date="session.date" :salaId="session.salaId" :precio="session.precio"
+            :asientos-disponibles="session.asientosDisponibles">
+        </SessionItem>
     </div>
 </template>
 <style scoped></style>
