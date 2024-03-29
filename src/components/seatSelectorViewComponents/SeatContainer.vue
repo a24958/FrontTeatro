@@ -15,6 +15,8 @@ onBeforeMount(() => {
 
 const { sessionData: sessionSeats } = storeToRefs(store)
 
+let seats = reactive(Array<Seat>());
+
 /* const session = seatSelectorFunctions.session;
  */
 interface Seat {
@@ -86,31 +88,10 @@ function getSeatType(seat: Seat) {
 
 }
 
-let seats = reactive(Array<Seat>());
-
-// function addCard(asientoId: number, suplemento: number) {
-//     var play: Card = {
-//         asientoId: asientoId,
-//         nombreObra: sessionSeats.value.nombreObra,
-//         fecha: sessionSeats.value.date!,
-//         precio: sessionSeats.value.precio + suplemento,
-//         sala: sessionSeats.value.salaId,
-//     }
-
-
-
-//     const index = seats.findIndex(playTicket => playTicket.asientoId === play.asientoId);
-
-//     if (index !== -1) {
-//         seats.splice(index, 1);
-//     } else {
-//         seats.push(play);
-//     }
-// }
 </script>
 <template>
         <div v-for="element in sessionSeats" :key="element.id" class="seatContainer">
-            <div v-for="seat in element.asientos.reverse()">
+            <div v-for="seat in element.asientos">
                 <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
             </div>
         </div>
@@ -122,7 +103,7 @@ let seats = reactive(Array<Seat>());
 .seatContainer {
     margin-top: 48px;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
