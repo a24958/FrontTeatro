@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia';
 import router from '@/router';
 
 const store = seatSelectorFunctionsStore();
-const sessionId =  router.currentRoute.value.params.sesionId[0];
+const sessionId = router.currentRoute.value.params.sesionId[0];
 
 onBeforeMount(() => {
     store.getSessionById(sessionId)
@@ -15,10 +15,6 @@ onBeforeMount(() => {
 
 const { sessionData: sessionSeats } = storeToRefs(store)
 
-let seats = reactive(Array<Seat>());
-
-/* const session = seatSelectorFunctions.session;
- */
 interface Seat {
     id: number,
     tipoAsiento: number,
@@ -88,16 +84,35 @@ function getSeatType(seat: Seat) {
 
 }
 
+let seats = reactive(Array<Card>());
+
+function addCard(asientoId: number, suplemento: number) {
+    var ticket: Card = {
+        asientoId: asientoId,
+        nombreObra: sessionSeats.value![0].nombreObra,
+        fecha: sessionSeats.value![0].date!,
+        precio: sessionSeats.value![0].precio + suplemento,
+        sala: sessionSeats.value![0].salaId,
+    }
+    const index = seats.findIndex(playTicket => playTicket.asientoId === ticket.asientoId);
+    
+    if (index !== -1) {
+        seats.splice(index, 1);
+    } else {
+        seats.push(ticket);
+    }
+}
+
 </script>
 <template>
-        <div v-for="element in sessionSeats" :key="element.id" class="seatContainer">
-            <div v-for="seat in element.asientos">
-                <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
-            </div>
+    <div v-for="element in sessionSeats" :key="element.id" class="seatContainer">
+        <div v-for="seat in element.asientos" @click="addCard(seat.id, seat.suplemento)">
+            <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
         </div>
+    </div>
 
-    <!-- <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
-        :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket> -->
+    <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
+        :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket>
 </template>
 <style scoped>
 .seatContainer {
