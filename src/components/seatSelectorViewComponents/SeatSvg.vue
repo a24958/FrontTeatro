@@ -12,7 +12,13 @@ const props = defineProps<{
 
 function selectSeat() {
     var asiento = document.getElementById(`${props.id}`) as HTMLElement;
-    asiento.classList.toggle('selected');
+    var back = asiento.querySelector('rect');
+    console.log(back);
+    
+
+    if(back?.getAttribute('fill') != "#ff2424") {
+        asiento.classList.toggle('selected');
+    }
 }
 
 </script>
@@ -37,8 +43,8 @@ function selectSeat() {
 </template>
 <style scoped>
 svg {
+    cursor: pointer;
     transition: transform 0.3s ease;
-    
 }
 
 svg:hover {
