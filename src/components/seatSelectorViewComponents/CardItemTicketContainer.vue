@@ -1,18 +1,5 @@
 <script setup lang="ts">
-import router from '@/router';
 import CardItemTicket from './CardItemTicket.vue';
-import { seatSelectorFunctionsStore } from '@/stores/storeSeatSelectorFunctions';
-import { storeToRefs } from 'pinia';
-import { ReactiveEffect, onBeforeMount, reactive } from 'vue';
-
-const store = seatSelectorFunctionsStore();
-const sessionId = router.currentRoute.value.params.sesionId[0];
-
-onBeforeMount(() => {
-    store.getSessionById(sessionId)
-})
-
-const { sessionData: sessionSeats } = storeToRefs(store)
 
 interface Card {
     asientoId: number,
@@ -30,14 +17,27 @@ const props = defineProps<{
 <template>
     <div>
         <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
-        :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket>
+            :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket>
     </div>
 </template>
 <style scoped>
-    div{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+}
+
+@media screen and (min-width: 800px) {
+    div {
+        margin-right: 48px;
     }
+}
+
+@media screen and (min-width: 1000px) {
+    div {
+        margin-right: 48px;
+    }
+}
 </style>

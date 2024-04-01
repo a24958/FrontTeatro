@@ -120,9 +120,9 @@ function addCard(asientoId: number, suplemento: number, ocupado: boolean) {
 <style scoped>
 .seatSection {
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .seatContainer {
@@ -136,12 +136,22 @@ function addCard(asientoId: number, suplemento: number, ocupado: boolean) {
 }
 
 @media screen and (min-width: 800px) {
+    .seatSection {
+        flex-direction: row;
+        align-items: start;
+    }
+
     .seatContainer {
         width: 800px;
     }
 }
 
 @media screen and (min-width: 1000px) {
+    .seatSection {
+        flex-direction: row;
+        align-items: start;
+    } 
+    
     .seatContainer {
         width: 1000px;
     }
