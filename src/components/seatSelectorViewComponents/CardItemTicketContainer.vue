@@ -13,17 +13,11 @@ const props = defineProps<{
     seats: Array<Card>
 }>()
 
-const emit = defineEmits(['removeTicket']);
-
-const emits = (asientoId: number) => {
-    emit('removeTicket', asientoId)
-} 
-
 </script>
 <template>
     <div>
         <CardItemTicket v-for="(ticket, index) in seats" :asiento-id="ticket.asientoId" :date="ticket.fecha"
-            :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra" @remove-ticket="emits(ticket.asientoId)"></CardItemTicket>
+            :precio="ticket.precio" :sala="ticket.sala" :nombre-obra="ticket.nombreObra"></CardItemTicket>
     </div>
 </template>
 <style scoped>

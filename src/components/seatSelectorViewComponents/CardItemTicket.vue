@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { storeToRefs } from 'pinia';
 
 const store = seatSelectorFunctionsStore();
+const { seats: seatsArray,} = storeToRefs(store)
 
 const props = defineProps<{
     asientoId: number,
@@ -11,22 +12,25 @@ const props = defineProps<{
     date: Date,
     precio: number
     sala: number,
-}>()
+}>() 
 
-const emit = defineEmits(['removeTicket']);
-
-const emits = (asientoId: number) => {
-    emit('removeTicket', asientoId)
-} 
-
-function test(id:number){
+function defineSeatId(id:number){
     store.setAsientoId(id);
 }
+
+function removeCard(id:number){
+    store.removeCard(id);
+}
+
+function onSelectedCard(id:number){
+    store.onSelectedSeat(id);
+}
+
 </script>
 <template>
     <div class="seatCardInfo">
         <h3>{{ nombreObra }}</h3>
-        <span class="close" @click="test(asientoId), emits(asientoId)">&times;</span>
+        <span class="close" @click="defineSeatId(asientoId), removeCard(asientoId), onSelectedCard(asientoId)">&times;</span>
         <p class="seatDate">Fecha: {{ format(new Date(date), 'dd/MM/yyyy') }}</p>
         <div class="seatInfo">
             <p>Sala: {{ sala }}</p>

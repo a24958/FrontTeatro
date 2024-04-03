@@ -84,46 +84,15 @@ function getSeatType(seat: Seat) {
 
 }
 
-let seats = reactive(Array<Card>());
-
-function addCard(asientoId: number, suplemento: number, ocupado: boolean) {
-    if (ocupado === false) {
-        var ticket: Card = {
-            asientoId: asientoId,
-            nombreObra: sessionSeats.value![0].nombreObra,
-            fecha: sessionSeats.value![0].date!,
-            precio: sessionSeats.value![0].precio + suplemento,
-            sala: sessionSeats.value![0].salaId,
-        }
-
-        const index = seats.findIndex(playTicket => playTicket.asientoId === ticket.asientoId);
-
-        if (index !== -1) {
-            seats.splice(index, 1);
-        } else {
-            seats.push(ticket);
-        }
-    }
-}
-
-function removeCard(id:number) {
-    const seat = seats.find(playTicket => playTicket.asientoId === id);
-    const index = seats.findIndex(playTicket => playTicket.asientoId === seat?.asientoId);
-
-    if (index !== -1) {
-        seats.splice(index, 1);
-    }
-}
-
 </script>
 <template>
     <div class="seatSection">
         <div v-for="element in sessionSeats" :key="element.id" class="seatContainer">
-            <div v-for="seat in element.asientos" @click="addCard(seat.id, seat.suplemento, seat.ocupado)">
+            <div v-for="seat in element.asientos" @click="store.addCard(seat.id, seat.suplemento, seat.ocupado)">
                 <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
             </div>
         </div>
-        <CardItemTicketContainer :seats="seats" @remove-ticket="removeCard(seatId)"></CardItemTicketContainer>
+        <CardItemTicketContainer :seats="store.seats"></CardItemTicketContainer>
     </div>
 </template>
 <style scoped>

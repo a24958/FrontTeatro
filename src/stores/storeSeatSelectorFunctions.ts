@@ -1,6 +1,6 @@
 import router from "@/router";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 interface Seat {
     id: number,
@@ -18,6 +18,14 @@ interface Session {
     precio: number,
     sala: null,
     asientos: Array<Seat>
+}
+
+interface Card {
+    asientoId: number,
+    nombreObra: string,
+    fecha: Date,
+    precio: number,
+    sala: number,
 }
 
 
@@ -38,6 +46,8 @@ const sessionData = ref<Session[]>()
 
 const asientoId = ref(0)
 
+const seats = reactive(Array<Card>())
+
 export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', () => {
 
     function setData(newData: Session[]) {
@@ -46,6 +56,41 @@ export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', (
 
     function setAsientoId(id: number){
         asientoId.value = id
+    }
+
+    function onSelectedSeat(id:number){
+        var asiento = document.getElementById(`${id}`) as HTMLElement;
+        asiento.classList.toggle('selected');
+    }
+    
+
+    function addCard(asientoId: number, suplemento: number, ocupado: boolean) {
+        if (ocupado === false) {
+            var ticket: Card = {
+                asientoId: asientoId,
+                nombreObra: sessionData.value![0].nombreObra,
+                fecha: sessionData.value![0].date!,
+                precio: sessionData.value![0].precio + suplemento,
+                sala: sessionData.value![0].salaId,
+            }
+    
+            const index = seats.findIndex(playTicket => playTicket.asientoId === ticket.asientoId);
+    
+            if (index !== -1) {
+                seats.splice(index, 1);
+            } else {
+                seats.push(ticket);
+            }
+        }
+    }
+
+    function removeCard(id:number) {
+        const seat = seats.find(playTicket => playTicket.asientoId === id);
+        const index = seats.findIndex(playTicket => playTicket.asientoId === seat?.asientoId);
+    
+        if (index !== -1) {
+            seats.splice(index, 1);
+        }
     }
 
     async function getSessionById(sessionId: string) {
@@ -83,5 +128,5 @@ export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', (
         }
     }
 
-    return { sessionData, asientoId ,setAsientoId ,getSessionById }
+    return { sessionData, seats, asientoId, setAsientoId, getSessionById, addCard, removeCard, onSelectedSeat }
 })
