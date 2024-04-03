@@ -63,6 +63,14 @@ export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', (
         asiento.classList.toggle('selected');
     }
     
+    function getSeatsIds(){
+        var seatsIds = Array<number>();
+        for(var seat of seats){
+            seatsIds.push(seat.asientoId)
+        }
+
+        return seatsIds;
+    }
 
     function addCard(asientoId: number, suplemento: number, ocupado: boolean) {
         if (ocupado === false) {
@@ -128,5 +136,5 @@ export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', (
         }
     }
 
-    return { sessionData, seats, asientoId, setAsientoId, getSessionById, addCard, removeCard, onSelectedSeat }
+    return { sessionData, seats, asientoId, setAsientoId, getSessionById, addCard, removeCard, onSelectedSeat, getSeatsIds }
 })

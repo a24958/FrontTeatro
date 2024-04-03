@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SeatSvg from './SeatSvg.vue'
 import { seatSelectorFunctionsStore } from "../../stores/storeSeatSelectorFunctions";
+import { buysFunctionsStore } from "../../stores/storeBuysFunctions";
 import { onBeforeMount, reactive } from 'vue';
 import { storeToRefs } from 'pinia';
 import router from '@/router';
@@ -8,6 +9,8 @@ import CardItemTicketContainer from './CardItemTicketContainer.vue';
 
 const store = seatSelectorFunctionsStore();
 const sessionId = router.currentRoute.value.params.sesionId[0];
+
+const storeBuys = buysFunctionsStore();
 
 onBeforeMount(() => {
     store.getSessionById(sessionId)
@@ -84,13 +87,32 @@ function getSeatType(seat: Seat) {
 
 }
 
+function buyTickets() {
+    const userData = localStorage.getItem('userData');
+    const userId = userData ? JSON.parse(userData).id : 1;
+    const asientos = store.getSeatsIds()
+
+
+    const data = {
+        "sesionId": parseInt(sessionId),
+        "asientos": asientos,
+        "usuarioId": userId
+    }
+
+    storeBuys.postBuy(data);
+    store.seats = Array<Card>();
+}
+
 </script>
 <template>
     <div class="seatSection">
-        <div v-for="element in sessionSeats" :key="element.id" class="seatContainer">
-            <div v-for="seat in element.asientos" @click="store.addCard(seat.id, seat.suplemento, seat.ocupado)">
-                <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
+        <div class="test">
+            <div v-for="element in sessionSeats" :key="element.id" class="seatContainer">
+                <div v-for="seat in element.asientos" @click="store.addCard(seat.id, seat.suplemento, seat.ocupado)">
+                    <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
+                </div>
             </div>
+            <button @click="buyTickets()">COMPRARs</button>
         </div>
         <CardItemTicketContainer :seats="store.seats"></CardItemTicketContainer>
     </div>
@@ -106,11 +128,16 @@ function getSeatType(seat: Seat) {
 .seatContainer {
     margin-top: 48px;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     width: 500px;
+}
+
+.test{
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (min-width: 800px) {
@@ -128,8 +155,8 @@ function getSeatType(seat: Seat) {
     .seatSection {
         flex-direction: row;
         align-items: start;
-    } 
-    
+    }
+
     .seatContainer {
         width: 1000px;
     }
