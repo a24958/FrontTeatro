@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { intranetSesionFunctionsStore } from "../../stores/storeIntranetFunctions";
 import { da } from 'vuetify/locale';
+import { format, parse } from 'date-fns';
 
 const intranetFunctions = intranetSesionFunctionsStore();
 const editSesion = intranetFunctions.apiCallEdit;
@@ -23,7 +24,14 @@ const showPopup = ref(false);
 const ObraId = ref(props.salaId);
 const SalaId = ref(props.salaId);
 const NombreObra = ref(props.nombre);
-const Fecha = ref(props.date);
+
+let fechaStr = '';
+if (props.date) {
+    fechaStr = format(new Date(props.date), 'dd/MM/yyyy');
+}
+const Fecha = ref(fechaStr);
+
+
 const Precio = ref(props.precio);
 
 const errorMessage = ref('');
@@ -47,7 +55,7 @@ const saveData = (id: number) => {
         "auditoriaUsuario": "Admin"
     }
 
-    if (!SalaId.value || !Fecha.value || !Precio.value) {
+    if (!SalaId.value || !Fecha || !Precio.value) {
         if (Precio.value === 0) {
             errorMessage.value = "La duración de una obra no puede ser 0";
             return;
@@ -58,9 +66,13 @@ const saveData = (id: number) => {
     }
 
     if (props.isEditing === true) {
-        editSesion(id, data);
+        const horario = format(new Date(data.horario), 'dd-MM-yyyy');
+        data.horario = format(new Date(horario), 'yyyy-MM-dd\'T\'HH:mm:ss.SSSX'),
+            editSesion(id, data);
     } else {
-        createSesion(dataCreate);
+        const horario = format(new Date(data.horario), 'dd-MM-yyyy');
+        dataCreate.horario = format(new Date(horario), 'yyyy-MM-dd\'T\'HH:mm:ss.SSSX'),
+            createSesion(dataCreate);
     }
 
     emit('closePopup');
@@ -81,17 +93,17 @@ const hidePlaceholder = (inputName: string) => {
         <div class="popup-content-label">
             Id Sala:
         </div>
-        <input type="text" v-model="SalaId" placeholder="SalaId" :class="{ error: errorMessage && !SalaId }" name="SalaId"
-            @focus="hidePlaceholder('SalaId')">
+        <input type="text" v-model="SalaId" placeholder="SalaId" :class="{ error: errorMessage && !SalaId }"
+            name="SalaId" @focus="hidePlaceholder('SalaId')">
         <div class="popup-content-label">
             Precio:
         </div>
-        <input type="text" v-model="Precio" placeholder="Precio" :class="{ error: errorMessage && !Precio }" name="Precio"
-            @focus="hidePlaceholder('Precio')">
+        <input type="text" v-model="Precio" placeholder="Precio" :class="{ error: errorMessage && !Precio }"
+            name="Precio" @focus="hidePlaceholder('Precio')">
         <div class="popup-content-label">
             Fecha:
         </div>
-        <input type="text" v-model="Fecha" placeholder="Fecha" :class="{ error: errorMessage && !Fecha }" name="Fecha"
+        <input type="text" v-model="Fecha" placeholder="01/01/24" :class="{ error: errorMessage && !Fecha }" name="Fecha"
             @focus="hidePlaceholder('Fecha')">
         <div class="popup-content-label" v-if="isEditing == false">
             Nombre Obra:

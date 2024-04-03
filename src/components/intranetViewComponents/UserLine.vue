@@ -4,7 +4,7 @@ import { intranetUserFunctionsStore } from '../../stores/storeIntranetFunctions'
 const props = defineProps<{
     id: number,
     email: string,
-    password: string,
+    rol: string,
     nombre: string,
 }>()
 
@@ -18,8 +18,8 @@ const intranetFunctions = intranetUserFunctionsStore();
     <div>
         <p> {{ id }}</p>
         <p> {{ email }}</p>
-        <p> {{ password }} </p>
         <p> {{ nombre }} </p>
+        <p> {{ rol }} </p>
 
         <!-- <div class="playLine-buttonsSection">
              <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> 

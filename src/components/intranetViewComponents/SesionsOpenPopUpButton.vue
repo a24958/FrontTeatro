@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { format } from 'date-fns';
 import PopUp from './SesionsPopUp.vue';
 
 const props = defineProps<{

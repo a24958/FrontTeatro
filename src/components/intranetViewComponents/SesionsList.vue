@@ -17,10 +17,7 @@ const props = defineProps<{
 const intranetSesionFunctions = intranetSesionFunctionsStore();
 const sesions = intranetSesionFunctions.theaterSesions;
 
-const formattedDate = (isoDate: Date): string => {
-  const d = new Date(isoDate);
-  return d.toLocaleDateString('es-ES');
-};
+
 </script>
 
 <template>

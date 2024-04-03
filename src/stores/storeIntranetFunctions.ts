@@ -34,7 +34,7 @@ interface Buy {
 interface User {
     id: number,
     email: string,
-    password: string,
+    rol: string,
     nombre: string,
     
 }
@@ -77,7 +77,6 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
     
-            // Llamar a apiCallGet para actualizar la lista completa de sesiones
             await apiCallGet();
     
         } catch (error) {
@@ -252,7 +251,6 @@ export const intranetSesionFunctionsStore = defineStore('intranetSesionFunctions
                 throw new Error('Error en la solicitud: ' + response.statusText);
             }
     
-            // Llamar a apiCallGet para actualizar la lista completa de sesiones
             await apiCallGet();
     
         } catch (error) {

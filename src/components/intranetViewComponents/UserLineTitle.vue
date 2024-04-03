@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
-import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
 
 </script>
 
@@ -8,8 +7,8 @@ import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
     <div>
         <p> ID Usuario</p>
         <p> Email </p>
-        <p> Password </p>
         <p> Nombre </p>
+        <p> Rol </p>
     </div>
 </template>
 

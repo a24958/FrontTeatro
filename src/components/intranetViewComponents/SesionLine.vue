@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { intranetSesionFunctionsStore } from '../../stores/storeIntranetFunctions';
 import SesionsPopUpButton from './SesionsOpenPopUpButton.vue';
+import { format } from 'date-fns';
 
 const props = defineProps<{
     id: number,
@@ -22,7 +23,7 @@ const deletePlay = intranetFunctions.apiCallDelete;
 <template>
     <div>
         <p> {{ salaId }}</p>
-        <p> {{ date }} </p>
+        <p> {{ format(new Date(date), 'dd/MM/yyyy') }} </p>
         <p> {{ precio }} </p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editSesion(id)"><img src="../../assets/images/editar.png" alt=""></button> -->

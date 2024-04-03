@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { intranetBuyFunctionsStore } from '../../stores/storeIntranetFunctions';
-import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
+import { format } from 'date-fns';
 
 const props = defineProps<{
     compraId: number,
@@ -25,7 +25,7 @@ const intranetFunctions = intranetBuyFunctionsStore();
         <p> {{ usuarioId }}</p>
         <p> {{ sesionId }} </p>
         <p> {{ precio }} </p>
-        <p> {{ fecha }} </p>
+        <p> {{ format(new Date(fecha), 'dd/MM/yyyy') }} </p>
 
         <!-- <div class="playLine-buttonsSection">
              <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> 

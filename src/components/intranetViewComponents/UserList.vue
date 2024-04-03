@@ -4,13 +4,11 @@ import { intranetUserFunctionsStore } from "../../stores/storeIntranetFunctions"
 import UserLine from "./UserLine.vue";
 import UserLineTitle from './UserLineTitle.vue'
 
-import OpenPopUpButton from "./PlaysOpenPopUpButton.vue";
-
 const props = defineProps<{
   id: number,
-    email: string,
-    password: string,
-    nombre: string,
+  email: string,
+  rol: string,
+  nombre: string,
 }>()
 
 const intranetFunctions = intranetUserFunctionsStore();
@@ -22,9 +20,8 @@ const users = intranetFunctions.theaterUsers;
 
 <template>
   <main>
-    <!-- <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="false"></OpenPopUpButton> -->
     <UserLineTitle></UserLineTitle>
-    <UserLine v-for="(user, index) in users" :key="index" :id="user.id" :email="user.email" :password="user.password" :nombre="user.nombre"
+    <UserLine v-for="(user, index) in users" :key="index" :id="user.id" :email="user.email" :rol="user.rol" :nombre="user.nombre"
       :class="{ par: index % 2 === 0, impar: index % 2 != 0 }">
     </UserLine>
   </main>
