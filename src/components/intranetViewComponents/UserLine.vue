@@ -1,34 +1,31 @@
 <script setup lang="ts">
-import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
-import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
+import { intranetUserFunctionsStore } from '../../stores/storeIntranetFunctions';
 
 const props = defineProps<{
     id: number,
+    email: string,
+    password: string,
     nombre: string,
-    descripcion: string,
-    rutaFoto: string,
-    duracion: number,
 }>()
 
-console.log(props.rutaFoto);
 
-
-const intranetFunctions = intranetFunctionsStore();
-const deletePlay = intranetFunctions.apiCallDelete;
+const intranetFunctions = intranetUserFunctionsStore();
+// const deletePlay = intranetFunctions.apiCallDelete;
 
 </script>
 
 <template>
     <div>
-        <img :src="rutaFoto" alt="Imagen de la obra">
-        <p class="playLine-name"> {{ nombre }}</p>
-        <p class="playLine-description"> {{ descripcion }}</p>
-        <p class="playLine-duration"> {{ duracion }} Minutos</p>
-        <div class="playLine-buttonsSection">
-            <!-- <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
-            <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="true"></OpenPopUpButton>
+        <p> {{ id }}</p>
+        <p> {{ email }}</p>
+        <p> {{ password }} </p>
+        <p> {{ nombre }} </p>
+
+        <!-- <div class="playLine-buttonsSection">
+             <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> 
+             <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="true"></OpenPopUpButton> 
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -37,7 +34,7 @@ div {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 80%;
     padding: 16px;
 }

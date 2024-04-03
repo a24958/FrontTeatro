@@ -12,7 +12,7 @@ const props = defineProps<{
 <template>
   <article class="obras-container">
     <div>
-      <img src="../../assets/images/cuento-de-navidad(movil).jpg" alt="">
+      <img :src="`${rutaFoto}`" alt="">
       <h2>{{ nombre }}</h2>
       <p>{{ descripcion }}</p>
       <p>{{ duracion }} Minutos</p>
@@ -23,7 +23,7 @@ const props = defineProps<{
 <style scoped>
 .obras-container div button {
   padding: 8px;
-  background-color: #3385D9;
+  background-color: #3385D9; 
   width: 350px;
   color: white;
   font-size: 16px;

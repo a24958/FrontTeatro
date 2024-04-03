@@ -1,12 +1,12 @@
 <script setup lang="ts">
     import WelcomeTitle from '../components/intranetViewComponents/WelcomeTitle.vue'
-    import IntranetLinks from '../components/IntranetLinks.vue'
-
+    import UserList from '../components/intranetViewComponents/UserList.vue'
+   
 </script>
 
 <template>
     <WelcomeTitle></WelcomeTitle>
-    <IntranetLinks></IntranetLinks>
+    <UserList></UserList>
 </template>
 
 <style scoped>
