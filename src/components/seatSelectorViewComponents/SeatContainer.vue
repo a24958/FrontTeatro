@@ -13,7 +13,7 @@ onBeforeMount(() => {
     store.getSessionById(sessionId)
 })
 
-const { sessionData: sessionSeats } = storeToRefs(store)
+const { sessionData: sessionSeats, asientoId: seatId } = storeToRefs(store)
 
 interface Seat {
     id: number,
@@ -106,6 +106,15 @@ function addCard(asientoId: number, suplemento: number, ocupado: boolean) {
     }
 }
 
+function removeCard(id:number) {
+    const seat = seats.find(playTicket => playTicket.asientoId === id);
+    const index = seats.findIndex(playTicket => playTicket.asientoId === seat?.asientoId);
+
+    if (index !== -1) {
+        seats.splice(index, 1);
+    }
+}
+
 </script>
 <template>
     <div class="seatSection">
@@ -114,7 +123,7 @@ function addCard(asientoId: number, suplemento: number, ocupado: boolean) {
                 <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
             </div>
         </div>
-        <CardItemTicketContainer :seats="seats"></CardItemTicketContainer>
+        <CardItemTicketContainer :seats="seats" @remove-ticket="removeCard(seatId)"></CardItemTicketContainer>
     </div>
 </template>
 <style scoped>

@@ -36,10 +36,16 @@ const rawData = ref()
 
 const sessionData = ref<Session[]>()
 
+const asientoId = ref(0)
+
 export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', () => {
 
     function setData(newData: Session[]) {
         sessionData.value = newData
+    }
+
+    function setAsientoId(id: number){
+        asientoId.value = id
     }
 
     async function getSessionById(sessionId: string) {
@@ -77,5 +83,5 @@ export const seatSelectorFunctionsStore = defineStore('seatSelectorFunctions', (
         }
     }
 
-    return { sessionData, getSessionById }
+    return { sessionData, asientoId ,setAsientoId ,getSessionById }
 })

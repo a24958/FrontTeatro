@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { seatSelectorFunctionsStore } from '@/stores/storeSeatSelectorFunctions';
 import { format } from 'date-fns';
+import { storeToRefs } from 'pinia';
+
+const store = seatSelectorFunctionsStore();
 
 const props = defineProps<{
     asientoId: number,
@@ -10,11 +14,19 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['removeTicket']);
+
+const emits = (asientoId: number) => {
+    emit('removeTicket', asientoId)
+} 
+
+function test(id:number){
+    store.setAsientoId(id);
+}
 </script>
 <template>
     <div class="seatCardInfo">
         <h3>{{ nombreObra }}</h3>
-        <span class="close" @click="emit('removeTicket')">&times;</span>
+        <span class="close" @click="test(asientoId), emits(asientoId)">&times;</span>
         <p class="seatDate">Fecha: {{ format(new Date(date), 'dd/MM/yyyy') }}</p>
         <div class="seatInfo">
             <p>Sala: {{ sala }}</p>

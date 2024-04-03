@@ -13,8 +13,6 @@ const props = defineProps<{
 function selectSeat() {
     var asiento = document.getElementById(`${props.id}`) as HTMLElement;
     var back = asiento.querySelector('rect');
-    console.log(back);
-    
 
     if(back?.getAttribute('fill') != "#ff2424") {
         asiento.classList.toggle('selected');
