@@ -9,7 +9,7 @@ const plays = intranetFunctions.theaterPlays;
 </script>
 <template>
     <section class="obras-section">
-        <PlayItem v-for="(play, index) in plays" :id="play.id" :nombre="play.nombre" :descripcion="play.descripcion" :duracion="play.duracion" :ruta-foto="play.rutaFoto"></PlayItem>
+        <PlayItem v-for="(play, index) in plays" :id="play.id" :nombre="play.nombre" :descripcion="play.descripcion" :duracion="play.duracion" :ruta-foto="play.rutaFoto" :select-seat="true"></PlayItem>
     </section>
 </template>
 <style scoped>

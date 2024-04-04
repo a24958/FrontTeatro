@@ -6,6 +6,7 @@ const props = defineProps<{
   descripcion: string,
   rutaFoto: string,
   duracion: number,
+  selectSeat: boolean,
 }>()
 
 </script>
@@ -16,7 +17,7 @@ const props = defineProps<{
       <h2>{{ nombre }}</h2>
       <p>{{ descripcion }}</p>
       <p>{{ duracion }} Minutos</p>
-      <RouterLink :to="'/play/'+ id"><button>COMPRAR</button></RouterLink>
+      <RouterLink v-if="selectSeat === true" :to="'/play/'+ id"><button>COMPRAR</button></RouterLink>
     </div>
   </article>
 </template>
