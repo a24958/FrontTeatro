@@ -7,7 +7,11 @@ import { storeToRefs } from "pinia";
 import PlayItem from "../playsViewComponents/PlayItem.vue";
 
 const store = sessionFunctionsStore();
-const obraId = router.currentRoute.value.params.obraId[0]
+let obraId = '';
+for (const obra of router.currentRoute.value.params.obraId
+) {
+   obraId += obra 
+}
 
 onBeforeMount(async () => {
     await store.getPlayById(obraId);

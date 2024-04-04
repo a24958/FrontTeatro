@@ -19,7 +19,7 @@ interface Sesion {
     id: number,
     salaId: number,
     obraId: number,
-    nombre: string,
+    nombreObra: string,
     date: Date,
     precio: number
 }

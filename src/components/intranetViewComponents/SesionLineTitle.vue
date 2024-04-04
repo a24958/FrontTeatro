@@ -4,6 +4,7 @@
 
 <template>
     <div>
+        <p> Obra </p>
         <p> SalaId </p>
         <p> Fecha </p>
         <p> Precio </p>

@@ -14,7 +14,7 @@ const props = defineProps<{
     id: number,
     salaId: number,
     obraId: number,
-    nombre: string,
+    nombreObra: string,
     date: Date,
     precio: number,
     isEditing: boolean
@@ -23,7 +23,7 @@ const props = defineProps<{
 const showPopup = ref(false);
 const ObraId = ref(props.salaId);
 const SalaId = ref(props.salaId);
-const NombreObra = ref(props.nombre);
+const NombreObra = ref(props.nombreObra);
 
 let fechaStr = '';
 let horaStr = '';

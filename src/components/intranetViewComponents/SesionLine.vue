@@ -7,7 +7,7 @@ const props = defineProps<{
     id: number,
     salaId: number,
     obraId: number,
-    nombre: string,
+    nombreObra: string,
     date: Date,
     precio: number
 }>()
@@ -22,12 +22,13 @@ const deletePlay = intranetFunctions.apiCallDelete;
 
 <template>
     <div>
+        <p> {{ nombreObra }}</p>
         <p> {{ salaId }}</p>
         <p> {{ format(new Date(date), 'dd/MM/yyyy - HH:mm') }} </p>
         <p> {{ precio }} </p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editSesion(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
-            <SesionsPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombre="nombre" :date="date" :precio="precio" :is-editing="true"></SesionsPopUpButton>
+            <SesionsPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombreObra="nombreObra" :date="date" :precio="precio" :is-editing="true"></SesionsPopUpButton>
             <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
         </div>
     </div>
