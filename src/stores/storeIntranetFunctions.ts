@@ -223,6 +223,8 @@ export const intranetSesionFunctionsStore = defineStore('intranetSesionFunctions
             }
     
             const index = theaterSesions.findIndex(sesion => sesion.id === id);
+            await apiCallGet();
+
             if (index !== -1) {
                 Object.assign(theaterSesions[index], data);
             } else {

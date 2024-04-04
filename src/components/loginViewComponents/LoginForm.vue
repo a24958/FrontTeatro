@@ -42,7 +42,7 @@ async function login() {
             <input v-model="user" type="text" id="email" name="email" required>
 
             <label for="contraseña">Contraseña</label>
-            <input v-model="password" type="text" id="contraseña" name="contraseña" required>
+            <input v-model="password" type="password" id="contraseña" name="contraseña" required>
 
             <button id="primary" @click.prevent="login()">Login</button>
             <button id="secondary">

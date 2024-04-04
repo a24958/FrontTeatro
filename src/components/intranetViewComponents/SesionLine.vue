@@ -23,7 +23,7 @@ const deletePlay = intranetFunctions.apiCallDelete;
 <template>
     <div>
         <p> {{ salaId }}</p>
-        <p> {{ format(new Date(date), 'dd/MM/yyyy') }} </p>
+        <p> {{ format(new Date(date), 'dd/MM/yyyy - HH:mm') }} </p>
         <p> {{ precio }} </p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editSesion(id)"><img src="../../assets/images/editar.png" alt=""></button> -->

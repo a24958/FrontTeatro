@@ -26,10 +26,19 @@ const SalaId = ref(props.salaId);
 const NombreObra = ref(props.nombre);
 
 let fechaStr = '';
+let horaStr = '';
+let fechaHoraStr = '';
+
+
 if (props.date) {
     fechaStr = format(new Date(props.date), 'dd/MM/yyyy');
+    horaStr = format(new Date(props.date), 'HH:mm');
+    fechaHoraStr = format(new Date(props.date), 'dd/MM/yyyy  HH:mm');
+
 }
+const Hora = ref(horaStr);
 const Fecha = ref(fechaStr);
+const FechaHora = ref(fechaHoraStr);
 
 
 const Precio = ref(props.precio);
@@ -39,16 +48,28 @@ const errorMessage = ref('');
 
 const saveData = (id: number) => {
 
+    const horarioEdit = {
+        "fecha": Fecha.value,
+        "hora": Hora.value,
+        "horario": format(new Date(`${Fecha.value} ${Hora.value}`), "dd/MM/yyyy  HH:mm")
+    }
+
+    const horarioCreate = {
+        "fecha": Fecha.value,
+        "hora": Hora.value,
+        "horario": format(new Date(`${Fecha.value} ${Hora.value}`), "dd/MM/yyyy  HH:mm")
+    }
+
     const data = {
         "obraId": ObraId.value,
-        "horario": Fecha.value,
+        "horario": FechaHora.value,
         "salaId": SalaId.value,
         "precio": Precio.value,
         "auditoriaUsuario": "Admin"
     }
 
     const dataCreate = {
-        "horario": Fecha.value,
+        "horario": FechaHora.value,
         "salaId": SalaId.value,
         "nombreObra": NombreObra.value,
         "precio": Precio.value,
@@ -66,12 +87,14 @@ const saveData = (id: number) => {
     }
 
     if (props.isEditing === true) {
-        const horario = format(new Date(data.horario), 'dd-MM-yyyy');
-        data.horario = format(new Date(horario), 'yyyy-MM-dd\'T\'HH:mm:ss.SSSX'),
+        const fecha = format(new Date(horarioEdit.fecha), 'dd-MM-yyyy');
+        const hora = format(new Date(horarioEdit.horario), 'HH:mm');
+        data.horario = format(new Date(`${fecha} ${hora}`), "yyyy-MM-dd'T'HH:mm:ss.SSSX");
             editSesion(id, data);
     } else {
-        const horario = format(new Date(data.horario), 'dd-MM-yyyy');
-        dataCreate.horario = format(new Date(horario), 'yyyy-MM-dd\'T\'HH:mm:ss.SSSX'),
+        const fecha = format(new Date(horarioCreate.fecha), 'dd-MM-yyyy');
+        const hora = format(new Date(horarioCreate.horario), 'HH:mm');
+        dataCreate.horario = format(new Date(`${fecha} ${hora}`), "yyyy-MM-dd'T'HH:mm:ss.SSSX");
             createSesion(dataCreate);
     }
 
@@ -103,7 +126,12 @@ const hidePlaceholder = (inputName: string) => {
         <div class="popup-content-label">
             Fecha:
         </div>
-        <input type="text" v-model="Fecha" placeholder="01/01/24" :class="{ error: errorMessage && !Fecha }" name="Fecha"
+        <input type="text" v-model="Fecha" placeholder="01/01/24" :class="{ error: errorMessage && !Fecha }"
+            name="Fecha" @focus="hidePlaceholder('Fecha')">
+        <div class="popup-content-label">
+            Hora:
+        </div>
+        <input type="text" v-model="Hora" placeholder="HH:mm" :class="{ error: errorMessage && !Fecha }" name="Fecha"
             @focus="hidePlaceholder('Fecha')">
         <div class="popup-content-label" v-if="isEditing == false">
             Nombre Obra:
