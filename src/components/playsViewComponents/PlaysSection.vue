@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { intranetFunctionsStore } from '../../stores/storeIntranetFunctions';
+import { intranetFunctionsStore } from '../../stores/storePlaysFunctions';
 import PlayItem from './PlayItem.vue'
 
 const intranetFunctions = intranetFunctionsStore();

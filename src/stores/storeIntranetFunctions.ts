@@ -49,7 +49,7 @@ export const intranetFunctionsStore = defineStore('intranetFunctions', () => {
     apiCallGet();
 
     async function apiCallGet() {
-        apiCallsFunctions.apiCall('GET', 'Obra', null, theaterPlays,)  
+        apiCallsFunctions.apiCall('GET', 'intranet/Obra', null, theaterPlays,)  
     } 
     
     async function apiCallDelete(id:number) {
