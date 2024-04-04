@@ -31,12 +31,12 @@ function onSelectedCard(id:number){
     <div class="seatCardInfo">
         <h3>{{ nombreObra }}</h3>
         <span class="close" @click="defineSeatId(asientoId), removeCard(asientoId), onSelectedCard(asientoId)">&times;</span>
-        <p class="seatDate">Fecha: {{ format(new Date(date), 'dd/MM/yyyy') }}</p>
+        <p class="seatDate"> {{ format(new Date(date), 'dd/MM/yyyy - HH:mm') }}</p>
         <div class="seatInfo">
             <p>Sala: {{ sala }}</p>
             <p>Asiento: {{ asientoId }}</p>
         </div>
-        <p>Precio: {{ precio }}€</p>
+        <p>{{ precio }}€</p>
     </div>
 </template>
 <style scoped>

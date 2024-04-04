@@ -31,17 +31,24 @@ interface Session {
     asientosDisponibles: number;
 }
 
+const fakeDate = new Date();
+
 </script>
 <template>
     <section class="sessionContainer">
         <div v-for="element in data" :key="element.id">
-            <PlayItem :id="element.id" :nombre="element.nombre" :descripcion="element.descripcion" :duracion="element.duracion" :ruta-foto="element.rutaFoto" :select-seat="false"></PlayItem>
+            <PlayItem :id="element.id" :nombre="element.nombre" :descripcion="element.descripcion"
+                :duracion="element.duracion" :ruta-foto="element.rutaFoto" :next-session="fakeDate"
+                :show-play-information="false"></PlayItem>
         </div>
-        <div v-for="element in data" :key="element.id" class="sessionContainerItem">
-            <SessionItem v-for="session in element.sesiones" :key="session.sesionId" :sesion-id="session.sesionId"
-                :date="session.date" :salaId="session.salaId" :precio="session.precio"
-                :asientos-disponibles="session.asientosDisponibles">
-            </SessionItem>
+        <div>
+            <h1>SESIONES DISPONIBLES</h1>
+            <div v-for="element in data" :key="element.id" class="sessionContainerItem">
+                <SessionItem v-for="session in element.sesiones" :key="session.sesionId" :sesion-id="session.sesionId"
+                    :date="session.date" :salaId="session.salaId" :precio="session.precio"
+                    :asientos-disponibles="session.asientosDisponibles">
+                </SessionItem>
+            </div>
         </div>
     </section>
 </template>

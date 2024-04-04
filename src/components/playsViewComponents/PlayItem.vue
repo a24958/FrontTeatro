@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { format } from 'date-fns';
 
 const props = defineProps<{
   id: number,
@@ -6,7 +7,8 @@ const props = defineProps<{
   descripcion: string,
   rutaFoto: string,
   duracion: number,
-  selectSeat: boolean,
+  nextSession: Date,
+  showPlayInformation: boolean,
 }>()
 
 </script>
@@ -16,8 +18,9 @@ const props = defineProps<{
       <img :src="`${rutaFoto}`" alt="">
       <h2>{{ nombre }}</h2>
       <p>{{ descripcion }}</p>
+      <p v-if="showPlayInformation === true">{{ format(new Date(nextSession), 'dd/MM/yyyy') }}</p>
       <p>{{ duracion }} Minutos</p>
-      <RouterLink v-if="selectSeat === true" :to="'/play/'+ id"><button>COMPRAR</button></RouterLink>
+      <RouterLink v-if="showPlayInformation === true" :to="'/play/'+ id"><button>COMPRAR</button></RouterLink>
     </div>
   </article>
 </template>

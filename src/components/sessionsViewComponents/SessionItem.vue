@@ -11,7 +11,7 @@ const props = defineProps<{
 </script>
 <template>
     <div class="sessionItem">
-        <h3>{{ format(new Date(date), 'dd/MM/yyyy') }}</h3>
+        <h3>{{ format(new Date(date), 'dd/MM/yyyy - HH:mm') }}</h3>
         <p>Sala: {{ salaId }}</p>
         <p>Precio: {{ precio }}€</p>
         <p>Asientos Disponibles: {{ asientosDisponibles }}</p>
