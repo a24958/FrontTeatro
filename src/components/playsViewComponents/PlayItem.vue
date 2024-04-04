@@ -84,4 +84,8 @@ const props = defineProps<{
 
 .obras-container div img {
   width: 350px;
+  height: 450px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  mask-image: linear-gradient(black 90%, transparent);
 }</style>
