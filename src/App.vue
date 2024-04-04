@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import BaseView from './views/BaseView.vue';
+import PageView from './views/PageView.vue';
 </script>
 
 <template>
   <BaseView></BaseView>
+  <PageView />
 </template>
 
 <style scoped>
