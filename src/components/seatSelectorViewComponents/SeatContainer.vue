@@ -6,6 +6,10 @@ import { onBeforeMount, reactive } from 'vue';
 import { storeToRefs } from 'pinia';
 import router from '@/router';
 import CardItemTicketContainer from './CardItemTicketContainer.vue';
+import ScenerySvg from './ScenerySvg.vue';
+import { eachMonthOfInterval } from 'date-fns';
+import { ref } from 'vue';
+
 
 const store = seatSelectorFunctionsStore();
 const sessionId = router.currentRoute.value.params.sesionId[0];
@@ -86,21 +90,29 @@ function getSeatType(seat: Seat) {
     }
 
 }
+const email = ref('');
+const nombre = ref('');
+const tarjeta = ref('');
 
 function buyTickets() {
-    const userData = localStorage.getItem('userData');
-    const userId = userData ? JSON.parse(userData).id : 1;
-    const asientos = store.getSeatsIds()
+    if (!email.value && !nombre.value && !tarjeta.value) {
+
+    } else {
+        const userData = localStorage.getItem('userData');
+        const userId = userData ? JSON.parse(userData).id : 1;
+        const asientos = store.getSeatsIds()
 
 
-    const data = {
-        "sesionId": parseInt(sessionId),
-        "asientos": asientos,
-        "usuarioId": userId
+        const data = {
+            "sesionId": parseInt(sessionId),
+            "asientos": asientos,
+            "usuarioId": userId
+        }
+
+        storeBuys.postBuy(data);
+        store.seats = Array<Card>();
     }
 
-    storeBuys.postBuy(data);
-    store.seats = Array<Card>();
 }
 
 </script>
@@ -112,12 +124,38 @@ function buyTickets() {
                     <SeatSvg :id="seat.id" :type="getSeatType(seat)"></SeatSvg>
                 </div>
             </div>
-            <button @click="buyTickets()">COMPRARs</button>
+            <div class="scenary-svg">
+                <ScenerySvg></ScenerySvg>
+            </div>
+
         </div>
-        <CardItemTicketContainer :seats="store.seats"></CardItemTicketContainer>
+        <div class="buy">
+            <form class="form" action="">
+                <h2>Formulario de Pago</h2>
+                <div>
+                    <label for="email">Email</label>
+                    <input v-model="email" type="text" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="email">Nombre</label>
+                    <input v-model="nombre" type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Nº de Tarjeta</label>
+                    <input v-model="tarjeta" type="number" id="bank" name="bank" required>
+                </div>
+
+                <button @click="buyTickets()">COMPRAR &#10140;</button>
+            </form>
+            <CardItemTicketContainer :seats="store.seats"></CardItemTicketContainer>
+        </div>
+
     </div>
 </template>
 <style scoped>
+h2{
+    color:#3385D9
+}
 .seatSection {
     display: flex;
     flex-direction: column;
@@ -135,9 +173,58 @@ function buyTickets() {
     width: 500px;
 }
 
-.test{
+.test {
     display: flex;
     flex-direction: column;
+}
+
+.scenary-svg {
+    transform: scale(0.75);
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-color: #EBEBEB;
+    border-style: solid;
+    border-radius: 12px;
+    width: 500px;
+}
+
+.form div{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.form input {
+    height: 20px;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border: 2px solid #3385D9;
+}
+
+.form button {
+    padding: 8px;
+    background-color: #3385D9;
+    width: 350px;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #3385D9;
+    margin-top: 12px;
+    margin-bottom: 48px;
 }
 
 @media screen and (min-width: 800px) {
@@ -152,13 +239,20 @@ function buyTickets() {
 }
 
 @media screen and (min-width: 1000px) {
+    
     .seatSection {
         flex-direction: row;
         align-items: start;
+        justify-content: center;
     }
 
     .seatContainer {
         width: 1000px;
+    }
+
+    .scenary-svg{
+    transform: scale(1);
+
     }
 }
 </style>

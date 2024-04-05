@@ -21,89 +21,47 @@ const intranetFunctions = intranetBuyFunctionsStore();
 
 <template>
     <div>
-        <p> {{ compraId }}</p>
-        <p> {{ usuarioId }}</p>
-        <p> {{ sesionId }} </p>
-        <p> {{ precio }} </p>
-        <p> {{ format(new Date(fecha), 'dd/MM/yyyy') }} </p>
-
-        <!-- <div class="playLine-buttonsSection">
-             <button id="edit" @click="editPlay(id)"><img src="../../assets/images/editar.png" alt=""></button> 
-             <OpenPopUpButton :id="id" :titulo="nombre" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="true"></OpenPopUpButton> 
-            <button id="delete" @click="deletePlay(id)"><img src="../../assets/images/borrar.png" alt=""></button>
-        </div> -->
+        <p class="id"> {{ compraId }}</p>
+        <p class="usuario"> {{ usuarioId }}</p>
+        <p class="sesion"> {{ sesionId }} </p>
+        <p class="precio"> {{ precio }} </p>
+        <p class="fecha"> {{ format(new Date(fecha), 'dd/MM/yyyy - HH:mm') }} </p>
     </div>
 </template>
 
 <style scoped>
 div {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 80%;
-    padding: 16px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-div img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-}
-.playLine-name{
-    display: block;
-    align-items: center;
-    justify-content: center;
-    width: 125px;
-    margin-right: 25px;
-}
-
-.playLine-description{
-    width: 50%;
-    margin-right: 8px;
-}
-
-.playLine-price{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    margin-right: 8px;
-}
-
-div button{
-    height: 30px;
-    width: 30px;
-    border: none;
-    border-radius: 7px;
-}
-
-.playLine-buttonsSection{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.id{
     width: 100px;
+    text-align: center;
 }
 
-.playLine-buttonsSection button img{
-    width: 20px;
-    height: 20px;
+.usuario{
+    width: 100px;
+    text-align: center;
 }
 
-#edit{
-    margin-right: 8px;
-    background-color: orange;
+.sesion{
+    width: 100px;
+    text-align: center;
 }
 
-#delete{
-    background-color: red;
+.precio{
+    width: 100px;
+    text-align: center;
 }
 
-#delete img{
-    margin-left: -1px;
+.fecha{
+    width: 300px;
+    text-align: center;
 }
-
 @media screen and (min-width: 800px){
     div{
         width: 50%;

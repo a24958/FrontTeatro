@@ -9,7 +9,7 @@ import OpenPopUpButton from './PlaysOpenPopUpButton.vue';
         <p class="playLine-name"> Nombre </p>
         <p class="playLine-description"> Descripcion </p>
         <p class="playLine-duration"> Duracion </p>
-        <p>Opciones</p>
+        <p class="playLine-buttonsSection">Opciones</p>
     </div>
 </template>
 
@@ -20,7 +20,7 @@ div {
     align-items: center;
     width: 80%;
     padding: 16px;
-    background-color: grey;
+    background-color: #3385D9;
     justify-content: space-around;
     color: white;
     font-size: large;
@@ -36,20 +36,20 @@ div img {
     display: block;
     align-items: center;
     justify-content: center;
-    width: 125px;
+    width: 200px;
     margin-right: 70px;
 }
 
 .playLine-description {
-    width: 30%;
+    width: 45%;
     margin-right: 0px;
 }
 
-.playLine-price {
+.playLine-duration {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
+    width: 150px;
     margin-right: 8px;
 }
 

@@ -24,25 +24,39 @@ const closePopup = () => {
 };
 
 function defineImage() {
-  if(props.isEditing === true){
+  if (props.isEditing === true) {
     return "/src/assets/images/editar.png"
   }
 
-  if(props.isEditing === false){
+  if (props.isEditing === false) {
     return "/src/assets/images/mas.png"
   }
-    
+
 }
 
+// document.addEventListener("DOMContentLoaded", function() {
+//   // Lógica para definir el color de fondo
+//   function defineBackgroundColor() {
+//     if (props.isEditing === true) {
+//       document.getElementById("button").style.backgroundColor = "green";
+      
+//     }
+//   }
+
+//   defineBackgroundColor()
+
+// });
+
 const src = defineImage()
+
 
 </script>
 
 <template>
-  <button @click="openPopup()"><img :src="src" alt="" id="image"></button>
+  <button @click="openPopup()" id="button"><img :src="src" alt="" id="image"></button>
   <div class="popup" v-if="showPopup">
-    <PopUp :id="id" :titulo="titulo" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion" :is-editing="isEditing"
-      @close-popup="closePopup">
+    <PopUp :id="id" :titulo="titulo" :descripcion="descripcion" :ruta-foto="rutaFoto" :duracion="duracion"
+      :is-editing="isEditing" @close-popup="closePopup">
     </PopUp>
   </div>
 </template>

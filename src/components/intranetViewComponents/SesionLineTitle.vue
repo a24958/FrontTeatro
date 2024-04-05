@@ -4,11 +4,11 @@
 
 <template>
     <div>
-        <p> Obra </p>
-        <p> SalaId </p>
-        <p> Fecha </p>
-        <p> Precio </p>
-        <p>Opciones</p>
+        <p class="obra"> Obra </p>
+        <p class="sala"> SalaId </p>
+        <p class="fecha"> Fecha </p>
+        <p class="precio"> Precio </p>
+        <p class="playLine-buttonsSection">Opciones</p>
     </div>
 </template>
 
@@ -19,7 +19,7 @@ div {
     align-items: center;
     width: 80%;
     padding: 16px;
-    background-color: grey;
+    background-color: #3385D9;
     justify-content: space-around;
     color: white;
     font-size: large;
@@ -31,25 +31,24 @@ div img {
     border-radius: 50%;
 }
 
-.playLine-name {
-    display: block;
-    align-items: center;
-    justify-content: center;
-    width: 125px;
-    margin-right: 70px;
+.obra{
+    width: 200px;
+    text-align: center;
 }
 
-.playLine-description {
-    width: 30%;
-    margin-right: 0px;
+.sala{
+    width: 100px;
+    text-align: center;
 }
 
-.playLine-price {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    margin-right: 8px;
+.fecha{
+    width: 200px;
+    text-align: center;
+}
+
+.precio{
+    width: 100px;
+    text-align: center;
 }
 
 div button {

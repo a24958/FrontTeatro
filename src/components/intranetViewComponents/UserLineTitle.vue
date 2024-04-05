@@ -19,7 +19,7 @@ div {
     align-items: center;
     width: 80%;
     padding: 16px;
-    background-color: grey;
+    background-color: #3385D9;
     justify-content: space-around;
     color: white;
     font-size: large;

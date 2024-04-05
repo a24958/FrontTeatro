@@ -5,9 +5,15 @@
 </script>
 
 <template>
-    <WelcomeTitle></WelcomeTitle>
+    <h1>Obras</h1>
     <PlaysList></PlaysList>
 </template>
 
 <style scoped>
+h1 {
+    font-size: 48px;
+    color: #3385D9;
+    text-align: center;
+    margin-bottom: 20px;
+}
 </style>

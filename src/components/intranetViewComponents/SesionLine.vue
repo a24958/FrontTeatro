@@ -22,10 +22,10 @@ const deletePlay = intranetFunctions.apiCallDelete;
 
 <template>
     <div>
-        <p> {{ nombreObra }}</p>
-        <p> {{ salaId }}</p>
-        <p> {{ format(new Date(date), 'dd/MM/yyyy - HH:mm') }} </p>
-        <p> {{ precio }} </p>
+        <p class="obra"> {{ nombreObra }}</p>
+        <p class="sala"> {{ salaId }}</p>
+        <p class="fecha"> {{ format(new Date(date), 'dd/MM/yyyy - HH:mm') }} </p>
+        <p class="precio"> {{ precio }} </p>
         <div class="playLine-buttonsSection">
             <!-- <button id="edit" @click="editSesion(id)"><img src="../../assets/images/editar.png" alt=""></button> -->
             <SesionsPopUpButton :id="id" :salaId="salaId" :obraId="obraId" :nombreObra="nombreObra" :date="date" :precio="precio" :is-editing="true"></SesionsPopUpButton>
@@ -49,27 +49,26 @@ div img {
     width: 50px;
     border-radius: 50%;
 }
-.playLine-name{
-    display: block;
-    align-items: center;
-    justify-content: center;
-    width: 125px;
-    margin-right: 25px;
+
+.obra{
+    width: 250px;
+    text-align: center;
 }
 
-.playLine-description{
-    width: 25%;
-    margin-right: 8px;
+.sala{
+    width: 100px;
+    text-align: center;
 }
 
-.playLine-price{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    margin-right: 8px;
+.fecha{
+    width: 250px;
+    text-align: center;
 }
 
+.precio{
+    width: 100px;
+    text-align: center;
+}
 div button{
     height: 30px;
     width: 30px;
