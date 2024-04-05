@@ -12,7 +12,13 @@ import { ref } from 'vue';
 
 
 const store = seatSelectorFunctionsStore();
-const sessionId = router.currentRoute.value.params.sesionId[0];
+
+
+let sessionId = '';
+for (const session of router.currentRoute.value.params.sesionId) {
+    sessionId += session 
+}
+
 
 const storeBuys = buysFunctionsStore();
 

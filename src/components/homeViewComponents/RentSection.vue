@@ -23,6 +23,7 @@ canvas {
 </style>
 
 <script>
+
 document.addEventListener("DOMContentLoaded", function() {
     // Obtener el canvas y su contexto
     var canvas = document.getElementById('myCanvas');
