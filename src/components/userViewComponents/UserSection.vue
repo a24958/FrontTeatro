@@ -2,6 +2,8 @@
 import { reactive } from "vue";
 import { userFunctionsStore } from '../../stores/storeUserFunctions';
 import UserBuyItem from "./UserBuyItem.vue"
+import UserBuyItemTitle from "./UserBuyItemTitle.vue"
+
 
 
 const props = defineProps<{
@@ -22,9 +24,25 @@ const users = userFunctions.UserBuys;
 </script>
 <template>
   <main>
-    <UserBuyItem v-for="(user, index) in users" :id="user.id" :precio="user.precio" :asientos="user.asientos" :sesion="user.sesion"></UserBuyItem>
+    <UserBuyItemTitle></UserBuyItemTitle>
+    <UserBuyItem v-for="(user, index) in users" :id="user.id" :precio="user.precio" :asientos="user.asientos" :sesion="user.sesion"
+    :class="{ par: index % 2 === 0, impar: index % 2 != 0 }"></UserBuyItem>
   </main>
 </template>
 <style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.par {
+  background-color: whitesmoke;
+}
+
+.impar {
+  background-color: grey;
+  color: white;
+}
 </style>
