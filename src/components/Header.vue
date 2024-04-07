@@ -16,7 +16,7 @@ const menuFunctions = menuFunctionsStore();
                 <RouterLink to="/contact">CONTACTO</RouterLink>
             </li>
             <li class="nav-item">
-                <a>OBRAS</a>
+                <RouterLink to="/plays">OBRAS</RouterLink>
             </li>
             <li class="nav-item link" @click="menuFunctions.closeMenu">
                 <RouterLink to="/rent">ALQUILER</RouterLink>
