@@ -56,7 +56,7 @@ p{
 }
 
 .asientos {
-    width: 60px;
+    width: 200px;
 
 }
 
